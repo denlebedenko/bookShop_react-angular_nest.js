@@ -1,39 +1,54 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import BookService from '../../services/book.service';
-import { Container } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 import BookItem from './book-item/book-item';
 import { QueryBook } from '../../models/query-books.model';
+import { connect } from 'react-redux';
+import { BookModel } from '../../models';
 
-export default class BookList extends React.Component {
+const bookService = new BookService();
 
+const BookList = ({query}: any) => {
 
-    bookService = new BookService();
-    
-    payload:QueryBook = {
-        page: '1',
-        minPrice: '',
-        maxPrice: '',
-        typeBook: '',
-    }
+   const [books, setBookList] = useState<BookModel[]>([])
 
-    async getBooksList() {
-        const books = this.bookService.getBooks(this.payload)
-        .then((res)=> {
-            console.log(res)
-        })
-        return books;
-    }
+   const getBooks = async () => {
+        const booklist = await bookService.getBooks(query);
+        setBookList(booklist)
+   }
+   useEffect(()=> {
+        getBooks();
+    }, [query])
 
-    componentDidMount(){
-        this.getBooksList();
-    }
+   console.log(books);
 
-    render(){
-        return(
-            <Container>
-                <BookItem/>
-            </Container>
-        )
-    }
-    
+    const booksList =  books.map((book)=> {
+        return <BookItem 
+                    key={book.id}
+                    title={book.title} 
+                    price={book.price} 
+                    authors={book.authors} 
+                    genre={book.genre}  
+                    description={book.description}
+                    coverUrl={book.coverUrl} 
+                    type={book.type}
+                    /> 
+    })
+    return(
+        <Container>
+            <Grid container direction="row">
+                {booksList}
+            </Grid>
+        </Container>
+    )
 }
+
+const mapStateToProps = (state: QueryBook) => {
+   return {
+       query: state
+   }
+}
+
+export default connect(mapStateToProps)(BookList)
+
+   /*  */
