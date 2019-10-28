@@ -1,11 +1,12 @@
 import React from 'react';
-import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, makeStyles, createStyles, Theme, Grid, FormControl, InputLabel, Input, Button, TextField, MenuItem } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, makeStyles, createStyles, Theme, Grid, FormControl, InputLabel, Input, Button, MenuItem, Select } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
+      marginBottom: 40,
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -26,23 +27,30 @@ const useStyles = makeStyles((theme: Theme) =>
       menu: {
         width: 200,
       },    
+      formControl: {
+        width: '100%',
+        minWidth: 120,
+      },
+      selectEmpty: {
+        marginTop: theme.spacing(2),
+      },
   }),
 );
 
-const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
-  };
-
-const types = [
-    {
-        value: 'book',
-    },
-    {
-        value: 'magazine',
-    }
-  ]
 const Filter = () => {
     const classes = useStyles();
+    const [values, setValues] = React.useState({
+      type: '',
+    });
+
+    const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+      setValues(oldValues => ({
+        ...oldValues,
+        [event.target.name as string]: event.target.value,
+      }));
+      console.log(event.target.value)
+    };
+
     return (
         <div className={classes.root}>
           <ExpansionPanel>
@@ -59,29 +67,25 @@ const Filter = () => {
                         <InputLabel htmlFor="component-simple">MinPrice $</InputLabel>
                         <Input id="component-simple" onChange={handleChange} type="number" />
                     </FormControl>
-                    <FormControl>
-                        <InputLabel htmlFor="component-simple">MaxPrice</InputLabel>
+                    <FormControl >
+                        <InputLabel htmlFor="component-simple">MaxPrice $</InputLabel>
                         <Input id="component-simple" onChange={handleChange} type="number" />
                     </FormControl>
-                    <TextField
-                        id="standard-select-currency"
-                        select
-                        label="Select"
-                        className={classes.textField}
-                        SelectProps={{
-                        MenuProps: {
-                            className: classes.menu,
-                        },
-                        }}
-                        helperText="Please select your currency"
-                        margin="normal"
-                    >
-                        {types.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.value}
+                    <FormControl className={classes.formControl}>
+                      <Select
+                        value={values.type}
+                        onChange={handleChange}
+                        displayEmpty
+                        name="type"
+                        className={classes.selectEmpty}
+                      >
+                        <MenuItem value="">
+                          <em>Choose type</em>
                         </MenuItem>
-                        ))}
-                    </TextField>
+                        <MenuItem value={'book'}>Book</MenuItem>
+                        <MenuItem value={'magazine'}>Magazine</MenuItem>
+                      </Select>
+                    </FormControl>
                     <Grid container justify="space-around">
                         <Button variant="contained" color="primary" className={classes.button}>
                         Apply

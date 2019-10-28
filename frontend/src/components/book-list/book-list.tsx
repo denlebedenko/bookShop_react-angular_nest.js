@@ -37,8 +37,8 @@ const BookList = ({query}: any) => {
     })
     return(
         <React.Fragment>
-            <Grid container direction="row" justify="center">
-            <Grid item>
+            <Grid container direction="row" justify="center" >
+                <Grid item>
                     <Filter/>
                 </Grid>
                 <Grid item>

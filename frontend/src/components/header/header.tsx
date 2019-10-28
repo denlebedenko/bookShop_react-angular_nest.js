@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
-// import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -84,7 +83,7 @@ const Header: React.FC = () => {
                   </FormControl>
                   <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="component-simple">Password</InputLabel>
-                    <Input id="component-simple" onChange={handleChange} type="password" />
+                    <Input id="component-simples" onChange={handleChange} type="password" />
                   </FormControl>
                   <Grid container justify="space-around">
                     <Button variant="contained" color="primary" className={classes.button}>
