@@ -36,12 +36,20 @@ const useStyles = makeStyles((theme: Theme) =>
       },
   }),
 );
-
+const filterData: any = { 
+  minPrice: '',
+  maxPrice: '',
+  type: '',
+}
 const Filter = () => {
     const classes = useStyles();
     const [values, setValues] = React.useState({
       type: '',
+      name: 'type'
     });
+    const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(event.target.value)
+    };
 
     const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
       setValues(oldValues => ({
@@ -65,11 +73,11 @@ const Filter = () => {
                     <h2 className="form_title">Please fill forms</h2>
                     <FormControl >
                         <InputLabel htmlFor="component-simple">MinPrice $</InputLabel>
-                        <Input id="component-simple" onChange={handleChange} type="number" />
+                        <Input id="component-simple" onChange={handleChanges} type="number"  name="minPrice"/>
                     </FormControl>
                     <FormControl >
                         <InputLabel htmlFor="component-simple">MaxPrice $</InputLabel>
-                        <Input id="component-simple" onChange={handleChange} type="number" />
+                        <Input id="component-simples" onChange={handleChanges} type="number" name="maxPrice" />
                     </FormControl>
                     <FormControl className={classes.formControl}>
                       <Select
