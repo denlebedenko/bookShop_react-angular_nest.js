@@ -5,6 +5,7 @@ import BookItem from './book-item/book-item';
 import { QueryBook } from '../../models/query-books.model';
 import { connect } from 'react-redux';
 import { BookModel } from '../../models';
+import Filter from '../filter/filter'
 
 const bookService = new BookService();
 
@@ -22,7 +23,7 @@ const BookList = ({query}: any) => {
 
    console.log(books);
 
-    const booksList =  books.map((book)=> {
+    const booksList = books.map((book)=> {
         return <BookItem 
                     key={book.id}
                     title={book.title} 
@@ -35,11 +36,21 @@ const BookList = ({query}: any) => {
                     /> 
     })
     return(
-        <Container>
-            <Grid container direction="row">
-                {booksList}
+        <React.Fragment>
+            <Grid container direction="row" justify="center">
+            <Grid item>
+                    <Filter/>
+                </Grid>
+                <Grid item>
+                    <Container>
+                        <Grid container direction="row">
+                            {booksList}
+                        </Grid>
+                    </Container>
+                </Grid>
             </Grid>
-        </Container>
+        </React.Fragment>
+        
     )
 }
 
