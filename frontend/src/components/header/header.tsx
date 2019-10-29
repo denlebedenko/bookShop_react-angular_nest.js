@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 300,
     },
     color: {
-        backgroundColor: 'rgb(186, 0, 233)'
+        backgroundImage: 'linear-gradient(to right, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #9ba0e6, #9ba6eb, #9cacf0, #adaef6, #beb0fa, #cfb2fd, #e1b3ff);'
     },
     textColor: {
       color: 'rgb(186, 0, 233)'

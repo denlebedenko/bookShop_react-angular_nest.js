@@ -16,8 +16,6 @@ const App: React.FC = () => {
         <BookList/>
       </React.Fragment>
     </Provider>
-    
-      
   );
 }
 

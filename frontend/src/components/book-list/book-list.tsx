@@ -61,5 +61,3 @@ const mapStateToProps = (state: QueryBook) => {
 }
 
 export default connect(mapStateToProps)(BookList)
-
-   /*  */

@@ -1,5 +1,21 @@
-import React from 'react';
-import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, makeStyles, createStyles, Theme, Grid, FormControl, InputLabel, Input, Button, MenuItem, Select } from '@material-ui/core';
+import React, { useState, FormEvent } from 'react';
+import { ExpansionPanel,
+         ExpansionPanelSummary, 
+         Typography, 
+         ExpansionPanelDetails, 
+         makeStyles, 
+         createStyles, 
+         Theme, 
+         Grid, 
+         FormControl, 
+         InputLabel, 
+         Input, 
+         Button, 
+         MenuItem, 
+         Select } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { changeFilter } from '../../store/books/action'
+import { QueryBook } from '../../models/query-books.model';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,14 +57,26 @@ const filterData: any = {
   maxPrice: '',
   type: '',
 }
-const Filter = () => {
+
+interface Props {
+  applyFilter: Function
+}
+
+const Filter: React.FC<Props> = (props) => {
     const classes = useStyles();
-    const [values, setValues] = React.useState({
+    const [filter, setFilter] = useState(filterData);
+
+    
+    const [values, setValues] = useState({
       type: '',
       name: 'type'
     });
+
     const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(event.target.value)
+      const { value } = event.target
+      setFilter({
+        ...filterData, value
+      })
     };
 
     const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
@@ -56,8 +84,17 @@ const Filter = () => {
         ...oldValues,
         [event.target.name as string]: event.target.value,
       }));
-      console.log(event.target.value)
+
+      const { value } = event.target
+      setFilter((filterData: QueryBook) => ({
+          ...filterData,
+          value
+      }))
     };
+
+    const onApplyFilter = () => {
+      console.log(filter)
+    }
 
     return (
         <div className={classes.root}>
@@ -76,7 +113,7 @@ const Filter = () => {
                         <Input id="component-simple" onChange={handleChanges} type="number"  name="minPrice"/>
                     </FormControl>
                     <FormControl >
-                        <InputLabel htmlFor="component-simple">MaxPrice $</InputLabel>
+                        <InputLabel htmlFor="component-simples">MaxPrice $</InputLabel>
                         <Input id="component-simples" onChange={handleChanges} type="number" name="maxPrice" />
                     </FormControl>
                     <FormControl className={classes.formControl}>
@@ -95,8 +132,8 @@ const Filter = () => {
                       </Select>
                     </FormControl>
                     <Grid container justify="space-around">
-                        <Button variant="contained" color="primary" className={classes.button}>
-                        Apply
+                        <Button onClick={onApplyFilter} variant="contained" color="primary" className={classes.button}>
+                            Apply
                         </Button>
                     </Grid>            
                 </Grid>
@@ -106,4 +143,8 @@ const Filter = () => {
       );
 }
 
-export default Filter
+const mapDispatchToProps  = {
+  applyFilter: changeFilter
+}
+
+export default connect(null, mapDispatchToProps)(Filter)
