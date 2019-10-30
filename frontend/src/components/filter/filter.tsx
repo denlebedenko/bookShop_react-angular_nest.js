@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import { ExpansionPanel,
          ExpansionPanelSummary, 
          Typography, 
@@ -16,6 +16,7 @@ import { ExpansionPanel,
 import { connect } from 'react-redux';
 import { changeFilter } from '../../store/books/action'
 import { QueryBook } from '../../models/query-books.model';
+import { bindActionCreators } from 'redux';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,71 +30,73 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 500,
       color: 'rgb(186, 0, 233)',
     },
-      button: {
-        backgroundColor: 'rgb(186, 0, 233)',
-        width: '30%',
-        margin: '30px auto',
-        alignContent:'center'
-      },
-      textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 200,
-      },
-      menu: {
-        width: 200,
-      },    
-      formControl: {
-        width: '100%',
-        minWidth: 120,
+    button: {
+      backgroundColor: 'rgb(186, 0, 233)',
+      width: '30%',
+      margin: '30px auto',
+      alignContent:'center'
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 200,
+    },
+    menu: {
+      width: 200,
+    },    
+    formControl: {
+      width: '100%',
+      minWidth: 120,
       },
       selectEmpty: {
         marginTop: theme.spacing(2),
       },
   }),
 );
-const filterData: any = { 
+const filterData: QueryBook = { 
   minPrice: '',
   maxPrice: '',
-  type: '',
+  typeBook: '',
 }
 
-interface Props {
-  applyFilter: Function
-}
+  // interface Props {
+  //   applyFilter: Function
+  // }
 
-const Filter: React.FC<Props> = (props) => {
+const Filter = ({changeFilter}: any) => {
     const classes = useStyles();
     const [filter, setFilter] = useState(filterData);
 
-    
+
     const [values, setValues] = useState({
-      type: '',
-      name: 'type'
+      typeBook: '',
     });
 
     const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target
-      setFilter({
-        ...filterData, value
-      })
+      const { value, name } = event.target
+      setFilter((filterData: QueryBook)=>({
+        ...filterData, 
+        [name]:value,
+      }))
     };
 
-    const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+    const handleSelectChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+      const { value, name } = event.target
+
       setValues(oldValues => ({
         ...oldValues,
-        [event.target.name as string]: event.target.value,
+        [name as string]: value,    
       }));
 
-      const { value } = event.target
-      setFilter((filterData: QueryBook) => ({
+      setFilter((filterData: QueryBook)=>({ 
           ...filterData,
-          value
+          [name as string]:value,
       }))
     };
 
     const onApplyFilter = () => {
-      console.log(filter)
+      changeFilter(filter)
+      console.log(changeFilter(filter))
     }
 
     return (
@@ -118,11 +121,11 @@ const Filter: React.FC<Props> = (props) => {
                     </FormControl>
                     <FormControl className={classes.formControl}>
                       <Select
-                        value={values.type}
-                        onChange={handleChange}
+                        value={values.typeBook}
+                        onChange={handleSelectChange}
                         displayEmpty
-                        name="type"
                         className={classes.selectEmpty}
+                        name="typeBook"
                       >
                         <MenuItem value="">
                           <em>Choose type</em>
@@ -132,7 +135,7 @@ const Filter: React.FC<Props> = (props) => {
                       </Select>
                     </FormControl>
                     <Grid container justify="space-around">
-                        <Button onClick={onApplyFilter} variant="contained" color="primary" className={classes.button}>
+                        <Button onClick={onApplyFilter}  variant="contained" color="primary" className={classes.button}>
                             Apply
                         </Button>
                     </Grid>            
@@ -143,8 +146,14 @@ const Filter: React.FC<Props> = (props) => {
       );
 }
 
-const mapDispatchToProps  = {
-  applyFilter: changeFilter
+const mapDispatchToProps = (dispatch: any) => {
+
+  return {
+    ...bindActionCreators({
+    changeFilter
+  }, dispatch),
+  dispatch
+}
 }
 
 export default connect(null, mapDispatchToProps)(Filter)

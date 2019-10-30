@@ -5,8 +5,9 @@ import Header from './components/header/header';
 import { createStore } from 'redux';
 import reducer from './store/books/reducer';
 import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(reducer)
+const store = createStore(reducer, composeWithDevTools())
 
 const App: React.FC = () => {
   return (

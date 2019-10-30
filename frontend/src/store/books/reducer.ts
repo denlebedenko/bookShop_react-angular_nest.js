@@ -11,8 +11,6 @@ const reducer = (state: QueryBook = initialQuery, action: any) => {
     switch (action.type) {
         case 'GET_FILTER' :
             const newList = {
-                ...state,
-                page: action.payload.page,
                 minPrice: action.payload.minPrice,
                 maxPrice: action.payload.maxPrice,
                 typeBook: action.payload.typeBook,
