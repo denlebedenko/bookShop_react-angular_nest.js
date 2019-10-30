@@ -34,15 +34,6 @@ export class AuthController {
 @ApiResponse({ status: 403, description: 'Forbidden.'})
 @Post('register')
   async regiser(@Body() user: UserCreateModel, @Response() res): Promise<UserCreateModel> {
-
-    if (!(user && user.username && user.password && user.email)) {
-      throw new ApplicationException('Fill in the form fields');
-    }
-    const checkUser = await this.userService.findOneUser(user.username);
-
-    if (checkUser) {
-      throw new ApplicationException ('Sorry, but this name is busy');
-    }
     const newUser = await this.authService.register(user);
     return  newUser;
   }

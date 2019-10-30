@@ -7,7 +7,7 @@ const initialQuery: QueryBook = {
     typeBook: '',
 }
 
-const reducer = (state: QueryBook = initialQuery, action: any) => {
+const queryReducer = (state: QueryBook = initialQuery, action: any) => {
     switch (action.type) {
         case 'GET_FILTER' :
             const newList = {
@@ -30,4 +30,4 @@ const reducer = (state: QueryBook = initialQuery, action: any) => {
     }
 }
 
-export default reducer;
+export default queryReducer;

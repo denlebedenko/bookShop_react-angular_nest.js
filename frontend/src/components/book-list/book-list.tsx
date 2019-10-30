@@ -5,11 +5,10 @@ import BookItem from './book-item/book-item';
 import { QueryBook } from '../../models/query-books.model';
 import { connect } from 'react-redux';
 import { BookModel } from '../../models';
-import Filter from '../filter/filter'
-
+import Filter from '../filter/filter';
 const bookService = new BookService();
 
-const BookList = ({query}: any) => {
+const BookList = ({query}:any) => {
 
    const [books, setBookList] = useState<BookModel[]>([])
 
@@ -54,9 +53,9 @@ const BookList = ({query}: any) => {
     )
 }
 
-const mapStateToProps = (state: QueryBook) => {
+const mapStateToProps = (state:any) => {
    return {
-       query: state
+       query: state.query
    }
 }
 

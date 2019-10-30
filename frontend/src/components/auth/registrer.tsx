@@ -1,27 +1,9 @@
-import React, { useState } from 'react';
-import { Button, 
-         Menu, 
-         Grid, 
-         FormControl, 
-         InputLabel, 
-         Input, 
-         makeStyles, 
-         Theme, 
-         createStyles } from '@material-ui/core';
-import { UserLoginModel } from '../../models';
+import React, { useState } from 'react'
+import { UserRegisterModel } from '../../models';
+import { Button, Menu, Grid, FormControl, InputLabel, Input, makeStyles, Theme, createStyles } from '@material-ui/core';
 import AuthService from '../../services/auth.service';
-import { UserDataModel } from '../../models/user-data.model';
-import { bindActionCreators } from 'redux';
-import { authUser } from '../../store/auth/action';
-import { connect } from 'react-redux';
 
 const authService = new AuthService();
-
-const authData: UserLoginModel = {
-    username: '',
-    password: '',
-}
-
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,8 +22,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Auth = ({logining}: any) => {
+const registerData: UserRegisterModel = {
+    email: '',
+    password: '',
+    username: '',
+}
 
+const Registrer = () => {
     
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -53,32 +40,29 @@ const Auth = ({logining}: any) => {
         setAnchorEl(null);
     };
 
-  const [auth, setAuthData] = useState(authData);
+    const [registration, setRegisterData] = useState(registerData);
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value, name } = event.target;
-      setAuthData((authData: UserLoginModel)=> ({
-        ...authData,
+      setRegisterData((registerData: UserRegisterModel)=> ({
+        ...registerData,
         [name]:value
       }))
     };
 
-    const loginUser = async() => {
-      const userData:UserDataModel = await authService.authUser(auth);
-
-      localStorage.setItem('token', userData.token);
-      logining(userData);
-
-      console.log(logining(userData))
-      return userData;
+    const registerUser = async() => {
+        const registeredUser = await authService.registerUser(registration);
+        console.log(registeredUser)
+        return registeredUser; 
     }
 
     const classes = useStyles();
+
     return (
         <div>
             <Button aria-controls="simple-menu" className={classes.root} aria-haspopup="true" onClick={handleClick}>
-                Login
+                registration
             </Button>
             <Menu
                 id="simple-menu"
@@ -90,16 +74,20 @@ const Auth = ({logining}: any) => {
               <Grid container direction="column" justify="center">
                 <h2 className="form_title">Please fill forms</h2>
                 <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="component-simple">Name</InputLabel>
-                    <Input id="component-simple" onChange={handleChange} name="username"/>
+                    <InputLabel htmlFor="email">Email</InputLabel>
+                    <Input id="email" onChange={handleChange} name="email"/>
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="component-simple">Password</InputLabel>
-                    <Input id="component-simples" onChange={handleChange} type="password" name="password" />
+                    <InputLabel htmlFor="password">Password</InputLabel>
+                    <Input id="password" onChange={handleChange} type="password" name="password" />
+                  </FormControl>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="username">Name</InputLabel>
+                    <Input id="username" onChange={handleChange} type="text" name="username" />
                   </FormControl>
                   <Grid container justify="space-around">
-                    <Button variant="contained" color="primary" className={classes.button} onClick={loginUser}>
-                      Log In
+                    <Button variant="contained" color="primary" className={classes.button} onClick={registerUser}>
+                      Register
                     </Button>
                   </Grid>            
               </Grid>
@@ -108,10 +96,4 @@ const Auth = ({logining}: any) => {
     )
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-  const logining = bindActionCreators(authUser, dispatch)
-   return {
-    logining
-   }
-}
-export default connect(null, mapDispatchToProps)(Auth);
+export default Registrer;

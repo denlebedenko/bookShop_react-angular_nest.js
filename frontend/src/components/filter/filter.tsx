@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
   }),
 );
+
 const filterData: QueryBook = { 
   minPrice: '',
   maxPrice: '',
@@ -69,11 +70,11 @@ const Filter = ({editFilters}: any) => {
     });
 
     const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value, name } = event.target
+      const { value, name } = event.target;
       setFilter((filterData: QueryBook)=>({
         ...filterData, 
         [name]:value,
-      }))
+      }));
     };
 
     const handleSelectChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
@@ -92,6 +93,7 @@ const Filter = ({editFilters}: any) => {
 
     const onApplyFilter = () => {
       editFilters(filter)
+      console.log(editFilters(filter))
     }
 
     return (
@@ -142,7 +144,6 @@ const Filter = ({editFilters}: any) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => {
-
    const editFilters = bindActionCreators(changeFilter, dispatch)
     return {
       editFilters

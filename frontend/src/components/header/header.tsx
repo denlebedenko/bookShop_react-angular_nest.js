@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import './header.scss'
 import Auth from '../auth/auth';
+import Registrer from '../auth/registrer';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,6 +38,7 @@ const Header: React.FC = () => {
                 BookShop (React Edition)
               </Typography>
             <Auth/>
+            <Registrer/>
           </Toolbar>
         </AppBar>
       </div>
