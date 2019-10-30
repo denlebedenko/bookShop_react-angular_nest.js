@@ -27,19 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Header: React.FC = () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(event.target.value)
-    };
+  
     const classes = useStyles();
     return(
         <div className={classes.type}>

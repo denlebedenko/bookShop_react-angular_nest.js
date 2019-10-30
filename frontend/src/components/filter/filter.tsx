@@ -59,11 +59,7 @@ const filterData: QueryBook = {
   typeBook: '',
 }
 
-  // interface Props {
-  //   applyFilter: Function
-  // }
-
-const Filter = ({changeFilter}: any) => {
+const Filter = ({editFilters}: any) => {
     const classes = useStyles();
     const [filter, setFilter] = useState(filterData);
 
@@ -95,8 +91,7 @@ const Filter = ({changeFilter}: any) => {
     };
 
     const onApplyFilter = () => {
-      changeFilter(filter)
-      console.log(changeFilter(filter))
+      editFilters(filter)
     }
 
     return (
@@ -148,12 +143,11 @@ const Filter = ({changeFilter}: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
 
-  return {
-    ...bindActionCreators({
-    changeFilter
-  }, dispatch),
-  dispatch
+   const editFilters = bindActionCreators(changeFilter, dispatch)
+    return {
+      editFilters
+    }
 }
-}
+
 
 export default connect(null, mapDispatchToProps)(Filter)
