@@ -33,7 +33,7 @@ export class AuthController {
 @ApiResponse({ status: 201, description: 'successfully register user.'})
 @ApiResponse({ status: 403, description: 'Forbidden.'})
 @Post('register')
-  async regiser(@Body() user: UserCreateModel, @Response() res): Promise<UserCreateModel> {
+  async regiser(@Body() user: UserCreateModel): Promise<UserCreateModel> {
     const newUser = await this.authService.register(user);
     return  newUser;
   }
