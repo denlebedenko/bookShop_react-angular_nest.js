@@ -3,14 +3,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-
 import './header.scss'
-import { Grid } from '@material-ui/core';
+import Auth from '../auth/auth';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,21 +19,10 @@ const useStyles = makeStyles((theme: Theme) =>
     color: {
         backgroundImage: 'linear-gradient(to right, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #9ba0e6, #9ba6eb, #9cacf0, #adaef6, #beb0fa, #cfb2fd, #e1b3ff);'
     },
-    textColor: {
-      color: 'rgb(186, 0, 233)'
-    },
     type: {
       marginBottom: 20
     },
-    formControl: {
-      margin: "0 50px"
-    },
-    button: {
-      backgroundColor: 'rgb(186, 0, 233)',
-      width: '30%',
-      margin: '30px auto',
-      alignContent:'center'
-    }
+
   }),
 );
 
@@ -65,36 +48,7 @@ const Header: React.FC = () => {
               <Typography variant="h6" className={classes.title}>
                 BookShop (React Edition)
               </Typography>
-            <Button aria-controls="simple-menu" className={classes.root} aria-haspopup="true" onClick={handleClick}>
-                Login
-            </Button>
-            <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-              <Grid container direction="column" justify="center">
-                <h2 className="form_title">Please fill forms</h2>
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="component-simple">Name</InputLabel>
-                    <Input id="component-simple" onChange={handleChange} />
-                  </FormControl>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="component-simple">Password</InputLabel>
-                    <Input id="component-simples" onChange={handleChange} type="password" />
-                  </FormControl>
-                  <Grid container justify="space-around">
-                    <Button variant="contained" color="primary" className={classes.button}>
-                      Log In
-                    </Button>
-                    <Button variant="contained" color="primary" className={classes.button}>
-                      Register
-                    </Button>
-                  </Grid>            
-              </Grid>
-            </Menu>
+            <Auth/>
           </Toolbar>
         </AppBar>
       </div>
