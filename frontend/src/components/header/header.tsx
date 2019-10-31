@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import './header.scss'
+import './header.scss';
 import Auth from '../auth/auth';
-import Registrer from '../auth/registrer';
+import Cart from '../cart/cart';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,8 +37,8 @@ const Header: React.FC = () => {
               <Typography variant="h6" className={classes.title}>
                 BookShop (React Edition)
               </Typography>
-            <Auth/>
-            <Registrer/>
+              <Cart/>
+              <Auth/>
           </Toolbar>
         </AppBar>
       </div>

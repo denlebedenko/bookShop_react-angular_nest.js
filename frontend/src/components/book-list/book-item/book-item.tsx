@@ -23,13 +23,20 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
+  title: {
+    textTransform: 'uppercase',
+    fontSize: 18,
+  },
+  types: {
+    marginBottom: 20,
+  }
 });
 
 const BookItem: React.FC<BookModel> = (props) =>{
 
   const classes = useStyles();
 
- const { title, price, authors, genre, description, coverUrl, type } = props
+ const { title, price, authors, genre, description, coverUrl, type } = props;
 
 
   return (
@@ -42,28 +49,28 @@ const BookItem: React.FC<BookModel> = (props) =>{
                     title={title}
                     />
                     <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                       {title}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography  className={classes.types} variant="body2" color="textSecondary" component="p">
                         {description}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography className={classes.types} variant="body2" color="textSecondary" component="p">
                         Price: {price} $
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography className={classes.types} variant="body2" color="textSecondary" component="p">
                         Genre: {genre}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography className={classes.types} variant="body2" color="textSecondary" component="p">
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {type}
+                    <Typography className={classes.types} variant="body2" color="textSecondary" component="p">
+                        Type: {type}
                     </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
-                    Buy
+                      Buy
                     </Button>
                 </CardActions>
             </Card>  

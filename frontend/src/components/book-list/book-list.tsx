@@ -2,25 +2,24 @@ import React, {useState, useEffect} from 'react'
 import BookService from '../../services/book.service';
 import { Container, Grid } from '@material-ui/core';
 import BookItem from './book-item/book-item';
-import { QueryBook } from '../../models/query-books.model';
 import { connect } from 'react-redux';
 import { BookModel } from '../../models';
 import Filter from '../filter/filter';
+
+
 const bookService = new BookService();
 
-const BookList = ({query}:any) => {
+const BookList: React.FC = ({query}:any) => {
 
-   const [books, setBookList] = useState<BookModel[]>([])
+   const [books, setBookList] = useState<BookModel[]>([]);
 
    const getBooks = async () => {
         const booklist = await bookService.getBooks(query);
-        setBookList(booklist)
-   }
-   useEffect(()=> {
+        setBookList(booklist);
+   };
+   useEffect(() => {
         getBooks();
-    }, [query])
-
-   console.log(books);
+    }, [query]);
 
     const booksList = books.map((book)=> {
         return <BookItem 
@@ -50,13 +49,13 @@ const BookList = ({query}:any) => {
             </Grid>
         </React.Fragment>
         
-    )
-}
+    );
+};
 
 const mapStateToProps = (state:any) => {
    return {
-       query: state.query
-   }
-}
+       query: state.query,
+   };
+};
 
-export default connect(mapStateToProps)(BookList)
+export default connect(mapStateToProps)(BookList);

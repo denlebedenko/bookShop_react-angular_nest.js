@@ -5,7 +5,12 @@ const authUser = (loginData: UserDataModel) => ({
     payload: loginData,
 });
 
+const logOut = () => ({
+    type:'LOG_OUT',
+})
+
 
 export {
-    authUser
+    authUser,
+    logOut,
 };

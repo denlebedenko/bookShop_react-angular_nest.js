@@ -60,7 +60,7 @@ const filterData: QueryBook = {
   typeBook: '',
 }
 
-const Filter = ({editFilters}: any) => {
+const Filter: React.FC = ({editFilters}: any) => {
     const classes = useStyles();
     const [filter, setFilter] = useState(filterData);
 
@@ -78,7 +78,7 @@ const Filter = ({editFilters}: any) => {
     };
 
     const handleSelectChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
-      const { value, name } = event.target
+      const { value, name } = event.target;
 
       setValues(oldValues => ({
         ...oldValues,
@@ -88,13 +88,12 @@ const Filter = ({editFilters}: any) => {
       setFilter((filterData: QueryBook)=>({ 
           ...filterData,
           [name as string]:value,
-      }))
+      }));
     };
 
     const onApplyFilter = () => {
-      editFilters(filter)
-      console.log(editFilters(filter))
-    }
+      editFilters(filter);
+    };
 
     return (
         <div className={classes.root}>
@@ -144,11 +143,11 @@ const Filter = ({editFilters}: any) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => {
-   const editFilters = bindActionCreators(changeFilter, dispatch)
+   const editFilters = bindActionCreators(changeFilter, dispatch);
     return {
-      editFilters
-    }
-}
+      editFilters,
+    };
+};
 
 
 export default connect(null, mapDispatchToProps)(Filter)
