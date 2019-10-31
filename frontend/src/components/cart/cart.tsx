@@ -30,7 +30,7 @@ const Cart: React.FC = (props:any) => {
 
     const cart = <Box m={1}>
                     <IconButton aria-label="cart">
-                    <StyledBadge1 badgeContent={12} color="primary">
+                    <StyledBadge1 badgeContent={23} color="primary">
                         <ShoppingCartIcon className="cart_icon" />
                     </StyledBadge1>
                     </IconButton>
