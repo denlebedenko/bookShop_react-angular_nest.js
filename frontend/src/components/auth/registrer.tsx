@@ -74,16 +74,16 @@ const Registrer = () => {
               <Grid container direction="column" justify="center">
                 <h2 className="form_title">Please fill forms</h2>
                 <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="email">Email</InputLabel>
-                    <Input id="email" onChange={handleChange} name="email"/>
+                    <InputLabel >Email</InputLabel>
+                    <Input onChange={handleChange} name="email"/>
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="password">Password</InputLabel>
-                    <Input id="password" onChange={handleChange} type="password" name="password" />
+                    <InputLabel >Password</InputLabel>
+                    <Input onChange={handleChange} type="password" name="password" />
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="username">Name</InputLabel>
-                    <Input id="username" onChange={handleChange} type="text" name="username" />
+                    <InputLabel >Name</InputLabel>
+                    <Input onChange={handleChange} type="text" name="username" />
                   </FormControl>
                   <Grid container justify="space-around">
                     <Button variant="contained" color="primary" className={classes.button} onClick={registerUser}>

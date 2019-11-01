@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 import TokenStorage from '../../services/token.storage';
 import { connect } from 'react-redux';
+import ModalAuth from './modal-auth';
 
 const tokenStorage = new TokenStorage();
 
@@ -16,7 +17,7 @@ const PrivateRoute: React.FC<Prop> = ({Component, token , ...rest }) => {
 
     const isloggedin = tokenStorage.loggedIn(token);
 
-    return  <Route {...rest} render = { props => isloggedin ? <Component {...props}/> : <Redirect to="/"/> } />
+    return  <Route {...rest} render = { props => isloggedin ? <Component {...props}/> : <ModalAuth/> } />
 };
 
         

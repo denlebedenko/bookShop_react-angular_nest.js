@@ -91,18 +91,18 @@ const SignIn = ({logining}: any) => {
               <Grid container direction="column" justify="center">
                 <h2 className="form_title">Please fill forms</h2>
                 <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="component-simple">Name</InputLabel>
-                    <Input id="component-simple" onChange={handleChange} name="username" required/>
+                    <InputLabel>Name</InputLabel>
+                    <Input onChange={handleChange} name="username" required/>
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="component-simple">Password</InputLabel>
-                    <Input id="component-simples" onChange={handleChange} type="password" name="password" required />
+                    <InputLabel >Password</InputLabel>
+                    <Input  onChange={handleChange} type="password" name="password" required />
                   </FormControl>
                   <Grid container justify="space-around">
                     <Button variant="contained" color="primary" className={classes.button} onClick={loginUser}>
                       Log In
                     </Button>
-                  </Grid>            
+                  </Grid>           
               </Grid>
             </Menu>
         </div>
