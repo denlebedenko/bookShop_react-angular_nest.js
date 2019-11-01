@@ -1,12 +1,19 @@
 import React from 'react';
 import './App.scss';
+
 import BookList from './components/book-list/book-list';
 import Header from './components/header/header';
-import { createStore, combineReducers } from 'redux';
+import Cart from './components/cart/cart';
+
+
 import queryReducer from './store/books/reducer';
 import { authReducer } from './store/auth/reducer';
+
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const reducer = combineReducers({
   query: queryReducer, 
@@ -19,8 +26,17 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <React.Fragment>
-        <Header/>
-        <BookList/>
+        <Router>
+          <Header/>
+          <Switch>
+            <Route exact path="/">
+              <BookList/>
+            </Route>
+            <Route path="/cart">
+              <Cart/>
+            </Route>
+          </Switch>
+        </Router>
       </React.Fragment>
     </Provider>
   );

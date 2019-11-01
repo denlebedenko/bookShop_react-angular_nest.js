@@ -30,7 +30,7 @@ const authReducer = (state: UserDataModel = initialUserData, action: any ) => {
             role: '',
             token:'',
         }
-        return loggedOutUser
+        return loggedOutUser;
 
 
         

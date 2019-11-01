@@ -5,7 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import './header.scss';
 import Auth from '../auth/auth';
-import Cart from '../cart/cart';
+import CartBtn from '../cart/cart-btn';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -15,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
-      fontWeight: 300,
     },
     color: {
         backgroundImage: 'linear-gradient(to right, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #9ba0e6, #9ba6eb, #9cacf0, #adaef6, #beb0fa, #cfb2fd, #e1b3ff);'
@@ -35,12 +35,18 @@ const Header: React.FC = () => {
           <AppBar className={classes.root} position="static">
             <Toolbar className={classes.color}>
               <Typography variant="h6" className={classes.title}>
-                BookShop (React Edition)
+                <Link to="/" className="text" >
+                  <p>
+                    BookShop (React Edition)
+                  </p>
+                </Link>
               </Typography>
-              <Cart/>
+              <Link to="/cart">
+                <CartBtn/>
+              </Link>
               <Auth/>
           </Toolbar>
-        </AppBar>
+        </AppBar> 
       </div>
     )
 }
