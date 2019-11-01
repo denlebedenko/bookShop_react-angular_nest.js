@@ -8,6 +8,7 @@ import Registrer from './registrer';
 import './auth.scss'
 import { Grid } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,11 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ModalAuth() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const open: boolean = true;
 
   return (
     <div>
@@ -46,7 +44,6 @@ export default function ModalAuth() {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
-        onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -55,6 +52,9 @@ export default function ModalAuth() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
+            <Link to="/" className="back_btn">
+              Back to list
+            </Link>
             <h2 id="transition-modal-title"><WarningIcon className="warning_icon"/> Warning <WarningIcon className="warning_icon"/></h2>
             <p id="transition-modal-description">First you need to go through authorization</p>
             <Grid container justify="center">
