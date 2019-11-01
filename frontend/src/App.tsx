@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './components/auth/private-router';
 
 const reducer = combineReducers({
   query: queryReducer, 
@@ -29,12 +30,10 @@ const App: React.FC = () => {
         <Router>
           <Header/>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/">  
               <BookList/>
             </Route>
-            <Route path="/cart">
-              <Cart/>
-            </Route>
+            <PrivateRoute exact path="/cart" Component={Cart}/>я
           </Switch>
         </Router>
       </React.Fragment>

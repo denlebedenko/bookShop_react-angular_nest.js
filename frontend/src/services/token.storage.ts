@@ -3,7 +3,7 @@ import decode from 'jwt-decode';
 const tokenKey = 'token';
 
 export default class TokenStorage { 
-    
+
     getToken = () => {
         const token  = localStorage.getItem(tokenKey);
         return token;
@@ -33,11 +33,12 @@ export default class TokenStorage {
         return userRole;
     };
 
-    loggedIn = (token:string) => {
+    loggedIn = (token:string| null) => {
         return !!token && !this.isTokenExpired(token);
     };
 
     removeToken = () => {
         return localStorage.removeItem(tokenKey);
     };
+
 };
