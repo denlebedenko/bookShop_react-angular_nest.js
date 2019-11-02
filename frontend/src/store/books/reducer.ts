@@ -14,20 +14,29 @@ const queryReducer = (state: QueryBook = initialQuery, action: any) => {
                 minPrice: action.payload.minPrice,
                 maxPrice: action.payload.maxPrice,
                 typeBook: action.payload.typeBook,
-            }
-            return newList
+            };
+            return newList;
 
         case 'CHANGE_PAGE': 
             return {
                 page: action.payload.page,
                 ...state,
-            }
+            };
+        case 'RESET_FILTER':
+            const defaultList = {
+                ...state,
+                minPrice: '',
+                maxPrice: '',
+                typeBook: '',
+            };
+            return defaultList;
+            
 
         default:
             return {
                 ...state
-            }    
-    }
-}
+            };   
+    };
+};
 
 export default queryReducer;

@@ -5,7 +5,11 @@ const changeFilter = (customFilter: QueryBook) => ({
     payload: customFilter,
 });
 
+const resetFilter = () => ({
+    type: 'RESET_FILTER',
+});
 
 export {
-    changeFilter
+    changeFilter,
+    resetFilter,
 };

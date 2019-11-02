@@ -14,7 +14,7 @@ import { ExpansionPanel,
          MenuItem, 
          Select } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { changeFilter } from '../../store/books/action'
+import * as actions from '../../store/books/action'
 import { QueryBook } from '../../models/query-books.model';
 import { bindActionCreators } from 'redux';
 
@@ -60,7 +60,7 @@ const filterData: QueryBook = {
   typeBook: '',
 }
 
-const Filter: React.FC = ({editFilters}: any) => {
+const Filter: React.FC = ({changeFilter, resetFilter}: any) => {
     const classes = useStyles();
     const [filter, setFilter] = useState(filterData);
 
@@ -92,8 +92,13 @@ const Filter: React.FC = ({editFilters}: any) => {
     };
 
     const onApplyFilter = () => {
-      editFilters(filter);
+      setFilter(filterData);
+      changeFilter(filter);
     };
+
+    const onResetFilter = () => {
+      resetFilter();
+    }
 
     return (
         <div className={classes.root}>
@@ -134,6 +139,9 @@ const Filter: React.FC = ({editFilters}: any) => {
                         <Button onClick={onApplyFilter}  variant="contained" color="primary" className={classes.button}>
                             Apply
                         </Button>
+                        <Button onClick={onResetFilter}  variant="contained" color="primary" className={classes.button}>
+                            Reset
+                        </Button>
                     </Grid>            
                 </Grid>
             </ExpansionPanelDetails>
@@ -143,9 +151,10 @@ const Filter: React.FC = ({editFilters}: any) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => {
-   const editFilters = bindActionCreators(changeFilter, dispatch);
+   const {changeFilter, resetFilter } = bindActionCreators(actions, dispatch);
     return {
-      editFilters,
+      changeFilter,
+      resetFilter,
     };
 };
 
