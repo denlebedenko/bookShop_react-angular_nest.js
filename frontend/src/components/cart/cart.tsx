@@ -24,8 +24,14 @@ const Cart: React.FC = () => {
         getCartItems()
     }, [])
 
+    const countDublicate = purchasedBooks.reduce((prev: any, item: any)=> {
+        prev[item] = (prev[item] || 0) + 1;
+        return prev;
+    }, {})
+    console.log(countDublicate)
+
     const cartItem = books.map((book) => {
-       return <CartItem title={book.title} price={book.price} key={book.id}/>
+       return <CartItem title={book.title} price={book.price} key={book.id} id={book.id}/>
     })
     
     return (
