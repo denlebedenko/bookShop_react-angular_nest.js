@@ -27,10 +27,14 @@ const CartBtn: React.FC = (props:any) => {
 
     let logged = tokenStorage.loggedIn(props.token);
 
+    const purchasedBooks = JSON.parse(JSON.stringify(tokenStorage.getBooks()));
+    const lengthCart = JSON.parse(purchasedBooks) || [];
+
+    const countCart = lengthCart.length;
 
     const cart = <Box m={1}>
                     <IconButton aria-label="cart">
-                    <StyledBadge1 badgeContent={12} color="primary">
+                    <StyledBadge1 badgeContent={countCart} color="primary">
                         <ShoppingCartIcon className="cart_icon" />
                     </StyledBadge1>
                     </IconButton>

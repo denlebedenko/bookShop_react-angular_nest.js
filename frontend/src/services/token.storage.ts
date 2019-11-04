@@ -1,6 +1,7 @@
 import decode from 'jwt-decode';
 
 const tokenKey = 'token';
+const booksArr = 'books';
 
 export default class TokenStorage { 
 
@@ -40,5 +41,13 @@ export default class TokenStorage {
     removeToken = () => {
         return localStorage.removeItem(tokenKey);
     };
+
+    getBooks = () => {
+        return localStorage.getItem(booksArr);
+    }
+
+    setBooks = (books: any) => {
+        return localStorage.setItem(booksArr, books);
+    }
 
 };

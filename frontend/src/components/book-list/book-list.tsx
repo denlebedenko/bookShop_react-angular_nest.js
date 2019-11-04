@@ -17,6 +17,7 @@ const BookList: React.FC = ({query}:any) => {
         const booklist = await bookService.getBooks(query);
         setBookList(booklist);
    };
+   
    useEffect(() => {
         getBooks();
     }, [query]);
@@ -24,6 +25,7 @@ const BookList: React.FC = ({query}:any) => {
     const booksList = books.map((book)=> {
         return <BookItem 
                     key={book.id}
+                    id={book.id}
                     title={book.title} 
                     price={book.price} 
                     authors={book.authors} 
@@ -32,7 +34,8 @@ const BookList: React.FC = ({query}:any) => {
                     coverUrl={book.coverUrl} 
                     type={book.type}
                     /> 
-    })
+    });
+
     return(
         <React.Fragment>
             <Grid container direction="row" justify="center" >

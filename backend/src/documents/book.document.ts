@@ -2,6 +2,7 @@ import { Schema, Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 
 export interface BookDocument extends Document {
+  id: string;
   title: string;
   price: number;
   authors: any[];

@@ -2,7 +2,6 @@ import { ApiModelProperty } from '@nestjs/swagger';
 import { Types } from 'mongoose';
 
 export class BookCreateModel {
-
     @ApiModelProperty()
     readonly title: string;
 

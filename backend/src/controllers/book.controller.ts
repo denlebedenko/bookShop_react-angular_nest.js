@@ -76,4 +76,10 @@ export class BookController {
         const deleteBook = this.bookService.delete(id);
         return deleteBook;
     }
+
+    @Post('cart')
+    getCart(@Body() bookId)  {
+        const books = this.bookService.getBooksinCart(bookId);
+        return books;
+    }
 }

@@ -101,4 +101,9 @@ export class BookService {
         const count = await this.bookRepository.countPages();
         return count;
     }
+
+    async getBooksinCart(booksid) {
+        const books = await this.bookRepository.booksInCart(booksid);
+        return books;
+    }
 }

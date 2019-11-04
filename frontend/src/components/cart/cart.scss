@@ -1,3 +1,24 @@
 .cart_icon {
     color: gray;
 }
+
+.amount {
+    margin-right: 60px;
+}
+
+.cart_item {
+    cursor: pointer;
+    transition: .3s all ease;
+    padding: 0 20px;
+    text-transform: uppercase;
+    
+    &:hover {
+        background-color:  #aa8fd8;
+        color: #fff
+    }
+}
+
+.title {
+    padding: 0 20px;
+    text-transform: uppercase;
+}

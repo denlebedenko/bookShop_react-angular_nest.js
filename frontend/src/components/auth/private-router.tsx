@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, RouteProps } from 'react-router-dom';
+import { Route, RouteProps } from 'react-router-dom';
 import TokenStorage from '../../services/token.storage';
 import { connect } from 'react-redux';
 import ModalAuth from './modal-auth';

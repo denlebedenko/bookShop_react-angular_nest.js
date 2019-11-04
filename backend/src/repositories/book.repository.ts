@@ -3,6 +3,7 @@ import { Injectable, Inject } from '@nestjs/common';
 
 import { BookModel } from '../models';
 import { BookDocument } from '../documents/book.document';
+import { ObjectId } from 'bson';
 
 @Injectable()
 
@@ -18,10 +19,10 @@ export class BookRepository {
     }
 
     async findAll(page: number = 1, minPrice: number, maxPrice: number, type: string[]): Promise<BookDocument[]> {
-        const min = await this.bookModel.find().sort({price: +1}).limit(1);
+        const min = await this.bookModel.find().sort({ price: +1 }).limit(1);
         const findedMinPrice: number = min[0].price;
 
-        const max = await this.bookModel.find().sort({price: -1}).limit(1);
+        const max = await this.bookModel.find().sort({ price: -1 }).limit(1);
         const findedMaxPrice: number = max[0].price;
 
         const query = {
@@ -29,7 +30,7 @@ export class BookRepository {
                 $gte: minPrice && minPrice >= 0 ? minPrice : findedMinPrice,
                 $lte: maxPrice && maxPrice > 0 ? maxPrice : findedMaxPrice,
             },
-            type: {$in: type ? type : ['book', 'magazine']},
+            type: { $in: type ? type : ['book', 'magazine'] },
         };
         const books = await this.bookModel.find(query).skip(8 * (page - 1)).limit(8).populate('authors').exec();
         return books;
@@ -52,5 +53,10 @@ export class BookRepository {
         const countItem: number = await this.bookModel.find().countDocuments();
         const countPages: number = Math.ceil(countItem / 8);
         return countPages;
+    }
+
+    async booksInCart(ids: string[]): Promise<BookDocument[]> {
+        const items = await this.bookModel.find({ _id: { $in: ids }});
+        return items;
     }
 }
