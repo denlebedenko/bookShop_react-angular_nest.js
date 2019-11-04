@@ -27,10 +27,9 @@ const CartBtn: React.FC = (props:any) => {
 
     let logged = tokenStorage.loggedIn(props.token);
 
-    const purchasedBooks = JSON.parse(JSON.stringify(tokenStorage.getBooks()));
-    const lengthCart = JSON.parse(purchasedBooks) || [];
+    const purchasedBooks = JSON.parse(tokenStorage.getBooks()) || [];
 
-    const countCart = lengthCart.length;
+    const countCart = purchasedBooks.length;
 
     const cart = <Box m={1}>
                     <IconButton aria-label="cart">

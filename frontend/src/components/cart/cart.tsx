@@ -11,20 +11,19 @@ const cartService = new CartService();
 
 const Cart: React.FC = () => {
 
-    const purchasedBooks = JSON.parse(JSON.stringify(tokenStorage.getBooks()));
-    const list = JSON.parse(purchasedBooks) || [];
+    const purchasedBooks = JSON.parse(tokenStorage.getBooks()) || [];
 
     const [books, setBooks] = useState<BookModel[]>([])
 
     const getCartItems = async () => {
-        const items = await cartService.getCartItems(list);
+        const items = await cartService.getCartItems(purchasedBooks);
         setBooks(items)
     }
 
     useEffect(()=> {
         getCartItems()
     }, [])
-    
+
     const cartItem = books.map((book) => {
        return <CartItem title={book.title} price={book.price} key={book.id}/>
     })
@@ -32,17 +31,16 @@ const Cart: React.FC = () => {
     return (
         <div>
             <Container>
-            <Grid container direction="row" justify="space-between" className="title">
-                
-                <h2>Title</h2>
-                <Grid item>
-                    <Grid container direction="row">
-                        <h2 className="amount">Amount</h2>   
-                        <h2 className="price">Price</h2>
+                <Grid container direction="row" justify="space-between" className="title">
+                    <h2>Title</h2>
+                    <Grid item>
+                        <Grid container direction="row">
+                            <h2 className="amount">Amount</h2>   
+                            <h2 className="price">Price</h2>
+                        </Grid>
+                        
                     </Grid>
-                    
                 </Grid>
-            </Grid>
                 <Grid container direction="column" justify="space-between" >
                     {cartItem}
                 </Grid>

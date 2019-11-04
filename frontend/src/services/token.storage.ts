@@ -43,7 +43,7 @@ export default class TokenStorage {
     };
 
     getBooks = () => {
-        return localStorage.getItem(booksArr);
+        return JSON.parse(JSON.stringify(localStorage.getItem(booksArr)));
     }
 
     setBooks = (books: any) => {
