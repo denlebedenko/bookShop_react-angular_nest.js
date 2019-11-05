@@ -8,7 +8,6 @@ export interface CartState {
 
 const bookIds = JSON.parse(tokenStorage.getBooks()) || [];
 const amount = bookIds.length;
-console.log()
 
 const initialStore = {
     amount: amount,
@@ -21,7 +20,6 @@ const cartReducer = (state = initialStore, action:any) => {
             const purchasedBookId = {
                 ...state,
             }
-            console.log(action.payload)
             return purchasedBookId;
 
         default:
