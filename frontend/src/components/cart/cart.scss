@@ -18,12 +18,16 @@
 
 }
 
+.title {
+    margin-right: 25%;
+}
 .price_total {
     text-transform: uppercase;
 }
 
 .categories {
     width: 500px;
+    
 }
 
 .cart_item {
@@ -36,9 +40,13 @@
         background-color:  #aa8fd8;
         color: #fff
     }
+    .book_title {
+        width: 120px;
+    }
+    
 }
 
-.title {
-    padding: 0 20px;
+h2 {
+    padding: 0 12px;
     text-transform: uppercase;
 }

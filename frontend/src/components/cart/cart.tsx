@@ -33,8 +33,8 @@ const Cart: React.FC = () => {
     return (
         <div>
             <Container>
-                <Grid container direction="row" justify="space-between" className="title">
-                    <h2>Title</h2>
+                <Grid container direction="row" justify="flex-start" >
+                    <h2 className="title">Title</h2>
                     <Grid item className="categories">
                         <Grid container direction="row"  justify="space-between">
                             <h2 className="amount">Amount</h2>   

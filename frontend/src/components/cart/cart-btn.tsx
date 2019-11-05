@@ -28,8 +28,6 @@ const CartBtn: React.FC = (props:any) => {
     const { token, amount } = props;
     let logged = tokenStorage.loggedIn(token);
 
-    // const purchasedBooks = JSON.parse(tokenStorage.getBooks()) || [];
-
     const cart = <Box m={1}>
                     <IconButton aria-label="cart">
                     <StyledBadge1 badgeContent={amount} color="primary">
