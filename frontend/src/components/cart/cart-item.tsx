@@ -3,6 +3,8 @@ import { Grid, IconButton } from '@material-ui/core';
 import { BookModel } from '../../models';
 import TokenStorage from '../../services/token.storage';    
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 
 const tokenStorage = new TokenStorage();
 
@@ -10,7 +12,7 @@ interface Props {
     title: string;
     price: number;
     _id: any;
-    amount: number;
+    addedBook: Function;
 }  
 const  bookCountLength = (_id: any) => {
     const bookList: Array<BookModel> = JSON.parse(tokenStorage.getBooks()) || [];
@@ -29,7 +31,7 @@ const  bookCountLength = (_id: any) => {
     tokenStorage.setBooks(bookString);
   }
 
-const CartItem:React.FC<Props> = ({title, price, _id}) => {
+const CartItem:React.FC<Props> = ({title, price, _id, addedBook}) => {
 
     const amount = bookCountLength(_id);
     const priceTotal = price * amount;
@@ -46,9 +48,17 @@ const CartItem:React.FC<Props> = ({title, price, _id}) => {
                         <p className="price_total_count">{priceTotal}$</p>
                     </Grid>
                  </Grid>
-                 <IconButton aria-label="delete" onClick={()=> {cancelChoiceBtn(_id)}}>
-                    <DeleteIcon />
-                </IconButton>
+                 <Grid>
+                    <IconButton aria-label="delete" onClick={()=> {cancelChoiceBtn(_id)}}>
+                        <DeleteIcon />  
+                    </IconButton>
+                    <IconButton aria-label="delete" onClick={() => {addedBook(_id)}}>
+                        <AddCircleOutlineIcon />
+                    </IconButton>
+                    <IconButton aria-label="delete" onClick={()=> {cancelChoiceBtn(_id)}}>
+                        <RemoveCircleOutlineIcon />
+                    </IconButton>
+                 </Grid>
             </Grid>
             
         </div>

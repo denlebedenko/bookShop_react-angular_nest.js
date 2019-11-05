@@ -25,7 +25,10 @@ const StyledBadge1 = withStyles((theme: Theme) =>
 
 const CartBtn: React.FC = (props:any) => {
 
-    const { token, amount } = props;
+    const { token, bookIds } = props;
+
+    const amount = bookIds.length
+
     let logged = tokenStorage.loggedIn(token);
 
     const cart = <Box m={1}>
@@ -45,7 +48,7 @@ const CartBtn: React.FC = (props:any) => {
 const mapStateToProps = (state: any) => {
     return {
       token: state.auth.token,
-      amount: state.cart.amount,
+      bookIds: state.cart.books,
     };
   };
   

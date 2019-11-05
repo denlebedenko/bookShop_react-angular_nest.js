@@ -3,22 +3,28 @@ import TokenStorage from "../../services/token.storage";
 const tokenStorage = new TokenStorage()
 
 export interface CartState {
-    books: number,
+    books: string[],
 }
 
 const bookIds = JSON.parse(tokenStorage.getBooks()) || [];
-const amount = bookIds.length;
 
-const initialStore = {
-    amount: amount,
+
+const initialStore:CartState = {
+    books: bookIds,
 }
 
-const cartReducer = (state = initialStore, action:any) => {
+const cartReducer = (state:CartState = initialStore, action:any) => {
 
     switch(action.type) {
         case 'ADD_TO_CART':
+        const bookId = action.payload;
+
             const purchasedBookId = {
                 ...state,
+                books: [
+                    ...state.books,
+                    bookId,
+                ]
             }
             return purchasedBookId;
 

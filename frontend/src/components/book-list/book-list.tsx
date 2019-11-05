@@ -10,7 +10,7 @@ import { addToCart } from '../../store/cart/action';
 
 const bookService = new BookService();
 
-const BookList: React.FC = ({query}:any) => {
+const BookList: React.FC = ({query, onAddToCart}:any) => {
 
    const [books, setBookList] = useState<BookModel[]>([]);
 
@@ -36,6 +36,7 @@ const BookList: React.FC = ({query}:any) => {
                     description={book.description}
                     coverUrl={book.coverUrl} 
                     type={book.type}
+                    addToCart= {()=>onAddToCart(book.id)}
                     /> 
     });
 
@@ -59,15 +60,15 @@ const BookList: React.FC = ({query}:any) => {
 };  
 
 const mapStateToProps = (state:any) => {
-   return {
+    return {
        query: state.query,
-   };
+    };
 };
 
 const mapDispatchToProps = (dispatch:any) => {
     return { 
-        onAddToCart: (id: string) => dispatch(addToCart(id))
-        }
+        onAddToCart: (id: string) => dispatch(addToCart(id)),
     };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

@@ -14,7 +14,7 @@ import { ExpansionPanel,
          MenuItem, 
          Select } from '@material-ui/core';
 import { connect } from 'react-redux';
-import * as actions from '../../store/books/action'
+import * as actions from '../../store/books/action';
 import { QueryBook } from '../../models/query-books.model';
 import { bindActionCreators } from 'redux';
 
@@ -151,7 +151,7 @@ const Filter: React.FC = ({changeFilter, resetFilter}: any) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => {
-   const {changeFilter, resetFilter } = bindActionCreators(actions, dispatch);
+   const { changeFilter, resetFilter } = bindActionCreators(actions, dispatch);
     return {
       changeFilter,
       resetFilter,

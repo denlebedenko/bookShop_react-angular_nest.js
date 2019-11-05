@@ -9,9 +9,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import { BookModel } from '../../../models';
-import TokenStorage from '../../../services/token.storage';
-
-const tokenStorage = new TokenStorage();
 
 const useStyles = makeStyles({
   card: {
@@ -34,26 +31,18 @@ const useStyles = makeStyles({
   }
 });
 
-const buyBtn = (book:any) => {
-  // const checkLocalStg:any = tokenStorage.getBooks();
 
-  const bookList: Array<BookModel> = JSON.parse(tokenStorage.getBooks()) || [];
 
-  bookList.push(book.id);
-
-  const bookString: string = JSON.stringify(bookList);
-  return tokenStorage.setBooks(bookString);
+interface OwnProps {
+  addToCart: any;
 }
 
 
-
-
-
-type Props = BookModel;
+type Props = BookModel & OwnProps;
 const BookItem: React.FC<Props> = (props) =>{
   const classes = useStyles();
 
- const { title, price, authors, genre, description, coverUrl, type  } = props;
+ const { title, price, authors, genre, description, coverUrl, type, addToCart  } = props;
 
 
   return (
@@ -86,7 +75,7 @@ const BookItem: React.FC<Props> = (props) =>{
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary" onClick={() => buyBtn(props)}>
+                    <Button size="small" color="primary" onClick={addToCart}>
                       Buy
                     </Button>
                 </CardActions>
