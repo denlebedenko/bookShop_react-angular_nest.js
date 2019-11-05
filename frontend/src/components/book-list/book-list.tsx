@@ -5,6 +5,7 @@ import BookItem from './book-item/book-item';
 import { connect } from 'react-redux';
 import { BookModel } from '../../models';
 import Filter from '../filter/filter';
+import { addToCart } from '../../store/cart/action';
 
 
 const bookService = new BookService();
@@ -16,6 +17,7 @@ const BookList: React.FC = ({query}:any) => {
    const getBooks = async () => {
         const booklist = await bookService.getBooks(query);
         setBookList(booklist);
+        return booklist;
    };
    
    useEffect(() => {
@@ -23,6 +25,7 @@ const BookList: React.FC = ({query}:any) => {
     }, [query]);
 
     const booksList = books.map((book)=> {
+
         return <BookItem 
                     key={book.id}
                     id={book.id}
@@ -53,7 +56,7 @@ const BookList: React.FC = ({query}:any) => {
         </React.Fragment>
         
     );
-};
+};  
 
 const mapStateToProps = (state:any) => {
    return {
@@ -61,4 +64,10 @@ const mapStateToProps = (state:any) => {
    };
 };
 
-export default connect(mapStateToProps)(BookList);
+const mapDispatchToProps = (dispatch:any) => {
+    return { 
+        onAddToCart: (id: string) => dispatch(addToCart(id))
+        }
+    };
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);

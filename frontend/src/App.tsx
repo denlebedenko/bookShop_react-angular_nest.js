@@ -15,10 +15,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/auth/private-router';
+import cartReducer from './store/cart/reducer';
 
 const reducer = combineReducers({
   query: queryReducer, 
   auth: authReducer,
+  cart: cartReducer,
 });
 
 const store = createStore(reducer, composeWithDevTools())

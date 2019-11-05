@@ -35,9 +35,9 @@ const useStyles = makeStyles({
 });
 
 const buyBtn = (book:any) => {
-  const checkLocalStg:any = tokenStorage.getBooks();
+  // const checkLocalStg:any = tokenStorage.getBooks();
 
-  const bookList: Array<BookModel> = JSON.parse(checkLocalStg) || [];
+  const bookList: Array<BookModel> = JSON.parse(tokenStorage.getBooks()) || [];
 
   bookList.push(book.id);
 
@@ -45,11 +45,15 @@ const buyBtn = (book:any) => {
   return tokenStorage.setBooks(bookString);
 }
 
-const BookItem: React.FC<BookModel> = (props) =>{
 
+
+
+
+type Props = BookModel;
+const BookItem: React.FC<Props> = (props) =>{
   const classes = useStyles();
 
- const { title, price, authors, genre, description, coverUrl, type } = props;
+ const { title, price, authors, genre, description, coverUrl, type  } = props;
 
 
   return (
@@ -89,6 +93,6 @@ const BookItem: React.FC<BookModel> = (props) =>{
             </Card>  
           </Grid>
   );
-}
+};
 
 export default BookItem;

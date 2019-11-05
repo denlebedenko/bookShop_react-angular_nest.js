@@ -3,7 +3,27 @@
 }
 
 .amount {
-    margin-right: 60px;
+   width: 100px;
+   text-align: center;
+}
+
+.price {
+    width: 115px;
+    text-align: center;
+}
+
+.price_total_count {
+    width: 134px;
+    text-align: center;
+
+}
+
+.price_total {
+    text-transform: uppercase;
+}
+
+.categories {
+    width: 500px;
 }
 
 .cart_item {

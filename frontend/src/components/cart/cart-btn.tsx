@@ -25,15 +25,14 @@ const StyledBadge1 = withStyles((theme: Theme) =>
 
 const CartBtn: React.FC = (props:any) => {
 
-    let logged = tokenStorage.loggedIn(props.token);
+    const { token, amount } = props;
+    let logged = tokenStorage.loggedIn(token);
 
-    const purchasedBooks = JSON.parse(tokenStorage.getBooks()) || [];
-
-    const countCart = purchasedBooks.length;
+    // const purchasedBooks = JSON.parse(tokenStorage.getBooks()) || [];
 
     const cart = <Box m={1}>
                     <IconButton aria-label="cart">
-                    <StyledBadge1 badgeContent={countCart} color="primary">
+                    <StyledBadge1 badgeContent={amount} color="primary">
                         <ShoppingCartIcon className="cart_icon" />
                     </StyledBadge1>
                     </IconButton>
@@ -48,6 +47,7 @@ const CartBtn: React.FC = (props:any) => {
 const mapStateToProps = (state: any) => {
     return {
       token: state.auth.token,
+      amount: state.cart.amount,
     };
   };
   
