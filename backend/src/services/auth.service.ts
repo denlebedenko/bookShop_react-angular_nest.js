@@ -22,7 +22,6 @@ export class AuthService {
 
   async validatePayload(payload: JwtPayload): Promise<UserModel> {
    const user = await this.userService.findOneUser(payload.username);
-
    return user;
   }
 

@@ -12,12 +12,13 @@ interface Props {
     _id: string | undefined;
     addedBook: Function;
     removedBookFromCart: Function;
-}  
+}
+  
 const  bookCountLength = (_id: string | undefined) => {
     const bookList: Array<String> = JSON.parse(tokenStorage.getBooks()) || [];
     const countBooksChoice = bookList.filter(book => book === _id).length;
     return countBooksChoice;
-  }
+}
 
 const CartItem:React.FC<Props> = ({title, price, _id, addedBook, removedBookFromCart}) => {
 

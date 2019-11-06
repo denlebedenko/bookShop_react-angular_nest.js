@@ -22,9 +22,10 @@ const Cart: React.FC = ({cart, addToCart, removedFromCart}:any) => {
     useEffect(()=> {
         getCartItems();
     }, []);
+
     const cartItem = books.map((book) => {
         return <CartItem title={book.title} price={book.price} key={book.id} _id={book._id} addedBook={addToCart} removedBookFromCart={removedFromCart}/>
-     });
+    });
      
      return (
          <div>
@@ -47,13 +48,13 @@ const Cart: React.FC = ({cart, addToCart, removedFromCart}:any) => {
                  </Grid>
              </Container>
          </div>
-     );
+    );
  };
  
  const mapStateToProps = (state:any) => {
-     return {
-         cart: state.cart.books,
-     };
+    return {
+        cart: state.cart.books,
+    };
  };
  
  const mapDispatchToProps = (dispatch:any) => {

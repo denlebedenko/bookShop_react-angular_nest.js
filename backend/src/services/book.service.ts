@@ -102,8 +102,17 @@ export class BookService {
         return count;
     }
 
-    async getBooksinCart(booksid) {
+    async getBooksinCart(booksid: string[]) {
+        const result = {};
+
+        // tslint:disable-next-line:forin
+        for (const i in booksid) {
+            result[booksid[i]] = (result[booksid[i]] || 0) + 1;
+        }
+
+        console.log(result)
         const books = await this.bookRepository.booksInCart(booksid);
+        console.log(books)
         return books;
     }
 }
