@@ -50,3 +50,39 @@ h2 {
     padding: 0 12px;
     text-transform: uppercase;
 }
+
+
+#empty_cart_icon {
+    font-size: 24.5rem;
+    color:#d1befb;
+    text-align: center;
+}
+
+.empty_wrapp {
+    
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    h2 {
+        color:#d1befb;
+    }
+
+    .icon {
+        display: flex;
+        justify-content: center;
+    }
+
+    a {
+        text-transform: uppercase;
+        color:#d1befb;
+        text-decoration: none;
+        transition: .3s all ease;
+        &:hover {
+            border-bottom: 2px solid #d1befb;
+        }
+    }
+}

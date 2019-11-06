@@ -1,17 +1,19 @@
 import React from 'react';
 
 import { Container } from '@material-ui/core';
+
 import './cart.scss';
 
 import Cart from './cart';
 import { connect } from 'react-redux';
+import CartEmpty from './cart-empty';
 
 const CartWrapper: React.FC = ({cart}: any) => {
 
     return (
         <div>
             <Container>
-                {cart.length > 0 ? <Cart/> : <h2>Коризна пуста</h2>}
+                {cart.length > 0 ? <Cart/> : <CartEmpty/>}
             </Container>
         </div>
     );
