@@ -14,19 +14,30 @@ const initialStore:CartState = {
 }
 
 const cartReducer = (state:CartState = initialStore, action:any) => {
-
+        const bookId = action.payload;
     switch(action.type) {
         case 'ADD_TO_CART':
-        const bookId = action.payload;
 
             const purchasedBookId = {
                 ...state,
                 books: [
                     ...state.books,
                     bookId,
-                ]
-            }
+                ],
+            };
             return purchasedBookId;
+
+        case 'REMOVE_FROM_CART': 
+            const findBook = state.books.findIndex((book: string) => book === bookId);
+
+            const newList = {
+                ...state,
+                books: [
+                    ...state.books.filter( (id,index) => index !== findBook),
+                ],
+            };
+
+            return newList;
 
         default:
             return {

@@ -3,11 +3,11 @@ import { Button,
          Menu, 
          Grid, 
          FormControl, 
-         InputLabel, 
-         Input, 
          makeStyles, 
          Theme, 
-         createStyles } from '@material-ui/core';
+         createStyles, 
+         TextField
+        } from '@material-ui/core';
 import { UserLoginModel } from '../../models';
 import AuthService from '../../services/auth.service';
 import { UserDataModel } from '../../models/user-data.model';
@@ -91,12 +91,10 @@ const SignIn = ({logining}: any) => {
               <Grid container direction="column" justify="center">
                 <h2 className="form_title">Please fill forms</h2>
                 <FormControl className={classes.formControl}>
-                    <InputLabel>Name</InputLabel>
-                    <Input onChange={handleChange} name="username" required/>
+                    <TextField label="Name" onChange={handleChange} name="username" helperText=""/>
                   </FormControl>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel >Password</InputLabel>
-                    <Input  onChange={handleChange} type="password" name="password" required />
+                  <FormControl  className={classes.formControl}>
+                    <TextField  label="Password" onChange={handleChange} type="password" name="password" helperText=""/>
                   </FormControl>
                   <Grid container justify="space-around">
                     <Button variant="contained" color="primary" className={classes.button} onClick={loginUser}>

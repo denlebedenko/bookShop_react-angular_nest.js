@@ -14,6 +14,22 @@ const addToCart = (id:string) => {
     };
 };
 
+
+const removedFromCart = (id:any) => {
+
+    const findBook = bookIds.findIndex((book: string) => book === id);
+    bookIds.splice(findBook, 1);
+
+    const bookString: string = JSON.stringify(bookIds);
+    tokenStorage.setBooks(bookString);
+
+    return {
+        type: 'REMOVE_FROM_CART',
+        payload: id,
+    };
+};
+
 export { 
     addToCart,
+    removedFromCart,
 }
