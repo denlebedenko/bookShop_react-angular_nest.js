@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import { UserRegisterModel } from '../../models';
-import { Button, Menu, Grid, FormControl, InputLabel, Input, makeStyles, Theme, createStyles } from '@material-ui/core';
-import AuthService from '../../services/auth.service';
-import TokenStorage from '../../services/token.storage';
+import { Button, createStyles, FormControl, Grid, makeStyles, Menu, TextField, Theme } from '@material-ui/core';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import AuthService from '../../services/auth.service';
+import TokenStorage from '../../services/token.storage';
 import { authUser } from '../../store/auth/action';
 
 const authService = new AuthService();
@@ -27,10 +26,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const registerData: UserRegisterModel = {
-    email: '',
-    password: '',
-    username: '',
+const registerData: any = {
+    email: null,
+    password: null,
+    username: null,
+    errors: {
+      username: '',
+      email: '',
+      password: '',
+    }
 }
 
 const Registrer: React.FC = ({logining}: any) => {
@@ -47,13 +51,44 @@ const Registrer: React.FC = ({logining}: any) => {
 
     const [registration, setRegisterData] = useState(registerData);
 
+    let error = false;
+
+    const validEmailRegex = 
+          RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
       const { value, name } = event.target;
-      setRegisterData((registerData: UserRegisterModel)=> ({
+      const errors = registration.errors ;
+
+      switch (name) {
+        case 'username': 
+          errors.username = 
+            value.length < 5
+              ? 'Full Name must be 5 characters long!'
+              : '';
+          break;
+        case 'email': 
+          errors.email = 
+            validEmailRegex.test(value)
+              ? ''
+              : 'Email is not valid!';
+          break;
+        case 'password': 
+          errors.password = 
+            value.length < 8
+              ? 'Password must be 8 characters long!'
+              : '';
+          break;
+        default:
+          break;
+      }
+
+      setRegisterData((registerData: any) => ({  
         ...registerData,
-        [name]:value
-      }))
+        errors,
+        [name]:value,
+      }));
     };
 
     const registerUser = async() => {
@@ -61,7 +96,7 @@ const Registrer: React.FC = ({logining}: any) => {
         tokenStorage.setToken(registeredUser.token);
 
         logining(registeredUser)
-        
+
         return registeredUser; 
     }
 
@@ -82,19 +117,16 @@ const Registrer: React.FC = ({logining}: any) => {
               <Grid container direction="column" justify="center">
                 <h2 className="form_title">Please fill forms</h2>
                 <FormControl className={classes.formControl}>
-                    <InputLabel >Email</InputLabel>
-                    <Input onChange={handleChange} name="email"/>
+                    <TextField error={error} label="Email" onChange={handleChange} name="email" helperText={registration.errors.email} required/>
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel >Password</InputLabel>
-                    <Input onChange={handleChange} type="password" name="password" />
+                    <TextField error={error} label="Password" onChange={handleChange} type="password" name="password" helperText={registration.errors.password} required/>
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel >Name</InputLabel>
-                    <Input onChange={handleChange} type="text" name="username" />
+                    <TextField error={error} label="Name" onChange={handleChange} type="text" name="username"  helperText={registration.errors.username} required/>
                   </FormControl>
                   <Grid container justify="space-around">
-                    <Button variant="contained" color="primary" className={classes.button} onClick={registerUser}>
+                    <Button disabled={false} variant="contained" color="primary" className={classes.button} onClick={registerUser}>
                       Register
                     </Button>
                   </Grid>            
