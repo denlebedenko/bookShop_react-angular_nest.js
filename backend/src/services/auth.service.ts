@@ -10,6 +10,7 @@ import { UserDocument } from '../documents/user.document';
 
 import User from '../documents/user.document';
 import { ApplicationException } from '../common/filter/application-exception';
+import { RegisterationResponse } from 'src/models/auth/register-res.model';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,7 @@ export class AuthService {
    return user;
   }
 
-  async register(registeruser: UserCreateModel): Promise<UserModel> {
+  async register(registeruser: UserCreateModel): Promise<RegisterationResponse> {
     const salt = await genSalt(10);
 
     const user: UserDocument =  new User({
@@ -35,9 +36,22 @@ export class AuthService {
         role: registeruser.role,
     });
 
+    const payload: JwtPayload = {
+      username: user.username,
+      role: user.role,
+    };
+
     const registerUser = await this.userRepository.create(user);
 
-    return registerUser;
+    const validtoken = this.jwtService.sign(payload);
+
+    const registeredUser = {
+      username: user.username,
+      role: user.role,
+      token: validtoken,
+    };
+
+    return registeredUser;
 }
 
   async login(userAuth: AuthLoginModel): Promise<LoginResponse> {

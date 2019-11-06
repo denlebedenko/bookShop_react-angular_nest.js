@@ -13,4 +13,5 @@ export class UserCreateModel {
 
     @ApiModelProperty()
     readonly role: string;
+
 }

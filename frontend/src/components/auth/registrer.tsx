@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import { UserRegisterModel } from '../../models';
 import { Button, Menu, Grid, FormControl, InputLabel, Input, makeStyles, Theme, createStyles } from '@material-ui/core';
 import AuthService from '../../services/auth.service';
+import TokenStorage from '../../services/token.storage';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { authUser } from '../../store/auth/action';
 
 const authService = new AuthService();
+const tokenStorage = new TokenStorage();
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,7 +33,7 @@ const registerData: UserRegisterModel = {
     username: '',
 }
 
-const Registrer = () => {
+const Registrer: React.FC = ({logining}: any) => {
     
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -53,7 +58,10 @@ const Registrer = () => {
 
     const registerUser = async() => {
         const registeredUser = await authService.registerUser(registration);
-        console.log(registeredUser)
+        tokenStorage.setToken(registeredUser.token);
+
+        logining(registeredUser)
+        
         return registeredUser; 
     }
 
@@ -96,4 +104,11 @@ const Registrer = () => {
     )
 }
 
-export default Registrer;
+const mapDispatchToProps = (dispatch: any) => {
+  const logining = bindActionCreators(authUser, dispatch)
+   return {
+    logining
+   }
+}
+
+export default connect(null, mapDispatchToProps)(Registrer);

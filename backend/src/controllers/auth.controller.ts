@@ -6,6 +6,7 @@ import { AuthService, UserService } from '../services';
 import { ApiUseTags, ApiResponse , ApiBearerAuth } from '@nestjs/swagger';
 import { AuthLoginModel, UserCreateModel, LoginResponse } from '../models';
 import { ApplicationException } from '../common/filter/application-exception';
+import { RegisterationResponse } from 'src/models/auth/register-res.model';
 
 @ApiUseTags('Auth')
 @ApiBearerAuth()
@@ -33,7 +34,7 @@ export class AuthController {
 @ApiResponse({ status: 201, description: 'successfully register user.'})
 @ApiResponse({ status: 403, description: 'Forbidden.'})
 @Post('register')
-  async regiser(@Body() user: UserCreateModel): Promise<UserCreateModel> {
+  async regiser(@Body() user: UserCreateModel): Promise<RegisterationResponse> {
     const newUser = await this.authService.register(user);
     return  newUser;
   }
