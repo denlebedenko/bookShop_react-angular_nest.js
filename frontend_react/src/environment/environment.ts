@@ -1,38 +1,20 @@
 import { config } from 'dotenv';
 
-
 export class Environment {
 
-    get host(): string | undefined   {
-        return process.env.host;
+    get REACT_APP_GET_BOOKS_URL() {
+        return process.env.REACT_APP_GET_BOOKS_URL;
+    }
+    get REACT_APP_GET_CART_ITEMS() {
+        return process.env.REACT_APP_GET_CART_ITEMS;
     }
 
-    get port(): string | undefined {
-        return process.env.port;
+    get REACT_APP_REGISTRATION_USER() {
+        return process.env.REACT_APP_REGISTRATION_USER;
     }
 
-    get username(): string | undefined {
-        return process.env.username;
-    }
-
-    get password(): string | undefined  {
-        return process.env.password;
-    }
-
-    get REACT_APP_DATABASE() {
-        return process.env.REACT_APP_DATABASE;
-    }
-
-    get jwtSecret(): string | undefined  {
-        return process.env.jwtSecret;
-    }
-
-    get sendgrid(): string | undefined  {
-        return process.env.sendgrid;
-    }
-
-    get stripe() {
-        return process.env.stripe;
+    get REACT_APP_SIGNIN_USER(): string | undefined {
+        return process.env.REACT_APP_SIGNIN_USER;
     }
 
     constructor() {

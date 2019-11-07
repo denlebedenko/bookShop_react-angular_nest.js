@@ -15,18 +15,20 @@ const BookList: React.FC = ({query, onAddToCart}:any) => {
 
    const [books, setBookList] = useState<BookModel[]>([]);
 
-   const getBooks = async () => {
+    const getBooks = async () => {
         const booklist = await bookService.getBooks(query);
         setBookList(booklist);
         return booklist;
-   };
+    };
+    debugger
+        console.log(config.REACT_APP_GET_CART_ITEMS)
+
    
    useEffect(() => {
         getBooks();
     }, [query]);
 
     const booksList = books.map((book)=> {
-
         return <BookItem 
                     key={book.id}
                     id={book.id}
@@ -37,7 +39,7 @@ const BookList: React.FC = ({query, onAddToCart}:any) => {
                     description={book.description}
                     coverUrl={book.coverUrl} 
                     type={book.type}
-                    addToCart= {()=>onAddToCart(book.id)}
+                    addToCart= {() => onAddToCart(book.id)}
                     /> 
     });
 
