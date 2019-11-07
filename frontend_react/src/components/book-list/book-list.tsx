@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import { BookModel } from '../../models';
 import Filter from '../filter/filter';
 import { addToCart } from '../../store/cart/action';
+import { Environment } from '../../environment/environment';
 
 
 const bookService = new BookService();
-
+const config = new Environment();
 const BookList: React.FC = ({query, onAddToCart}:any) => {
 
    const [books, setBookList] = useState<BookModel[]>([]);

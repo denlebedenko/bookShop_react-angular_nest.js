@@ -1,11 +1,11 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import { Injectable } from '@nestjs/common';
-
 @Injectable()
+
 export class Environment {
 
-    get host(): string {
+    get host(): string   {
         return process.env.host;
     }
 
@@ -17,29 +17,29 @@ export class Environment {
         return process.env.username;
     }
 
-    get password(): string {
+    get password(): string  {
         return process.env.password;
     }
 
-    get database(): string {
+    get database(): string  {
         return process.env.database;
     }
 
-    get jwtSecret(): string {
+    get jwtSecret(): string  {
         return process.env.jwtSecret;
     }
 
-    get sendgrid(): string {
+    get sendgrid(): string  {
         return process.env.sendgrid;
     }
 
-    get stripe(): string {
+    get stripe(): string  {
         return process.env.stripe;
     }
 
     constructor() {
-        const path: string = `${process.env.NODE_ENV || 'development'}.env`;
-        const environmentConfiguration: dotenv.DotenvParseOutput = dotenv.parse(fs.readFileSync(path));
+        const filePath: string = `${process.env.NODE_ENV || 'develompent'}.env`;
+        const environmentConfiguration: dotenv.DotenvParseOutput = dotenv.parse(fs.readFileSync(filePath));
         this.initialize(environmentConfiguration);
     }
 
