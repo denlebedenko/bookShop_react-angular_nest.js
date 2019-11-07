@@ -26,7 +26,8 @@ export class AuthService {
   }
 
   async register(registeruser: UserCreateModel): Promise<RegisterationResponse> {
-    const salt = await genSalt(10);
+    const saltRounds = 10;
+    const salt = await genSalt(saltRounds);
 
     const user: UserDocument =  new User({
         username: registeruser.username,
