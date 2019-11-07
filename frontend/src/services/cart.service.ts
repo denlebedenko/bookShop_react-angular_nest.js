@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
-import { BookModel } from '../models';
+import { CartResponse } from '../models/cart-res.model';
 
 export default class CartService {
 
     getCartItems = async(payload: string[]) => {
-        const response: AxiosResponse<BookModel[]> = await axios.post<string[],AxiosResponse<BookModel[]>>('http://localhost:80/books/cart', payload);
+        const response: AxiosResponse<CartResponse> = await axios.post<string[],AxiosResponse<CartResponse>>('http://localhost:80/books/cart', payload);
         return response.data;
-    }
-}
+    };
+};
 

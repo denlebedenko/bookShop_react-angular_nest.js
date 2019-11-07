@@ -1,6 +1,6 @@
 import { Environment } from '../environment/Environment';
 
-const config = new Environment;
+const config = new Environment();
 
 export default {
     mongoURI:

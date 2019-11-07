@@ -12,19 +12,36 @@ const cartService = new CartService();
 
 const Cart: React.FC = ({cart, addToCart, removedFromCart}:any) => {
 
-    const [books, setBooks] = useState<BookModel[]>([])
+    const [booksI, setBooks] = useState<BookModel[]>([])
+    const [total, setTotalPrice] = useState(0)
 
     const getCartItems = async () => {
         const items = await cartService.getCartItems(cart);
-        setBooks(items);
+        const { totalPrice, books }  = items;
+
+        console.log(books)
+
+        setTotalPrice(totalPrice);
+        setBooks(books);
+        return books;
     };
 
     useEffect(()=> {
         getCartItems();
     }, []);
 
-    const cartItem = books.map((book) => {
-        return <CartItem title={book.title} price={book.price} key={book.id} _id={book._id} addedBook={addToCart} removedBookFromCart={removedFromCart}/>
+    
+
+
+    const cartItem = booksI.map((book) => {
+        return <CartItem 
+                    title={book.title} 
+                    price={book.price} 
+                    key={book.id} 
+                    _id={book._id} 
+                    addedBook={addToCart} 
+                    removedBookFromCart={removedFromCart} 
+                    getTotalPrice={getCartItems}/>
     });
      
      return (
@@ -44,7 +61,7 @@ const Cart: React.FC = ({cart, addToCart, removedFromCart}:any) => {
                      {cartItem}
                  </Grid>
                  <Grid container justify="flex-end" className="price_total">
-                     <h2>Total {12}$</h2>  
+                     <h2>Total {total}$</h2>  
                  </Grid>
              </Container>
          </div>

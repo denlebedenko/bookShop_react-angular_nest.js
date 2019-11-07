@@ -111,17 +111,23 @@ export class BookService {
         }
 
         const books = await this.bookRepository.booksInCart(booksid);
-        let totalPrice = 0;
-        books.map((book) => {
-                for (const key in result) {
-                    if (key == book._id ) {
-                        const sum = book.price * result[key];
-                        totalPrice += sum;
-                    }
-                }
 
+        let totalPrice: number = 0;
+
+        let key: string;
+
+        books.map((book) => {
+            for (key in result) {
+                if (key === book.id) {
+                    const sum = book.price * result[key];
+                    totalPrice += sum;
+                }
+            }
         });
-        console.log(totalPrice);
-        return books;
+
+        return {
+            totalPrice,
+            books,
+        };
     }
 }

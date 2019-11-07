@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, IconButton } from '@material-ui/core';
 import TokenStorage from '../../services/token.storage';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-
 const tokenStorage = new TokenStorage();
 
 interface Props {
@@ -12,6 +11,7 @@ interface Props {
     _id: string | undefined;
     addedBook: Function;
     removedBookFromCart: Function;
+    getTotalPrice: Function;
 }
   
 const  bookCountLength = (_id: string | undefined) => {
@@ -20,10 +20,21 @@ const  bookCountLength = (_id: string | undefined) => {
     return countBooksChoice;
 }
 
-const CartItem:React.FC<Props> = ({title, price, _id, addedBook, removedBookFromCart}) => {
+const CartItem:React.FC<Props> = ({title, price, _id, addedBook, removedBookFromCart, getTotalPrice}) => {
 
     const amount: number = bookCountLength(_id);
     const priceTotal: number = price * amount;
+
+    
+    useEffect(()=>{
+        const totalPrice = setTimeout(()=> {
+            console.log('test')
+            getTotalPrice();
+        }, 100);
+        return () => clearTimeout(totalPrice)
+    }, [amount])
+    
+
 
     return (
         <div>
