@@ -3,7 +3,7 @@ import { Injectable, Inject } from '@nestjs/common';
 
 import { BookModel } from '../models';
 import { BookDocument } from '../documents/book.document';
-import { ObjectId } from 'bson';
+
 
 @Injectable()
 
@@ -19,6 +19,8 @@ export class BookRepository {
     }
 
     async findAll(page: number = 1, minPrice: number, maxPrice: number, type: string[]): Promise<BookDocument[]> {
+        const countToSkip = 8 * (page - 1);
+
         const min = await this.bookModel.find().sort({ price: +1 }).limit(1);
         const findedMinPrice: number = min[0].price;
 
@@ -32,7 +34,7 @@ export class BookRepository {
             },
             type: { $in: type ? type : ['book', 'magazine'] },
         };
-        const books = await this.bookModel.find(query).skip(8 * (page - 1)).limit(8).populate('authors').exec();
+        const books = await this.bookModel.find(query).skip(countToSkip).limit(8).populate('authors').exec();
         return books;
     }
 

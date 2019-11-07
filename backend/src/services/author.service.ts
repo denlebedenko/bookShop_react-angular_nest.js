@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { AuthorCreateModel, AuthorModel } from '../models';
 import { AuthorRepository } from '../repositories';
-import Author, { AuthorDocument } from '../documents/author.documents';
+import Author, { AuthorDocument } from '../documents/author.document';
 
 @Injectable()
 

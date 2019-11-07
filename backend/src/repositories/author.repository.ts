@@ -1,8 +1,7 @@
 import { Model } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 
-import { AuthorModel } from '../models';
-import { AuthorDocument } from '../documents/author.documents';
+import { AuthorDocument } from '../documents/author.document';
 
 @Injectable()
 
@@ -18,7 +17,8 @@ export class AuthorRepository {
     }
 
     async findAll(page: number = 1): Promise<AuthorDocument[]> {
-        const findedAuthor = await this.authorModel.find().skip(10 * (page - 1)).limit(10)
+        const countToSkip = 10 * (page - 1);
+        const findedAuthor = await this.authorModel.find().skip(countToSkip).limit(10)
         .populate('books')
         .exec();
         return findedAuthor;

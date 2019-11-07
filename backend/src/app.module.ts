@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { APP_FILTER } from '@nestjs/core';
 
 import { PassportModule } from '@nestjs/passport';
@@ -33,7 +31,7 @@ const config = new Environment();
       signOptions: { expiresIn: '10m' },
     }),
   ],
-  controllers: [AppController, BookController, UserController, AuthorController, AuthController, SendGridController, StripeCustomerController],
+  controllers: [BookController, UserController, AuthorController, AuthController, SendGridController, StripeCustomerController],
   providers: [
     Environment,
     {
@@ -45,7 +43,6 @@ const config = new Environment();
       useClass: ExceptionFilterCustom,
 
     },
-    AppService,
     BookService,
     UserService,
     AuthorService,

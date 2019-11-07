@@ -18,12 +18,15 @@ export class UserRepository {
     }
 
     async findAll(page: number = 1): Promise<UserDocument[]> {
-        const findedUsers = await this.userModel.find().skip(10 * (page - 1)).limit(10);
+        const countToSkip = 8 * (page - 1);
+
+        const findedUsers = await this.userModel.find().skip(countToSkip).limit(10);
         return findedUsers;
     }
 
     async findOneById(id: string): Promise <UserDocument> {
-        return await this.userModel.findById(id);
+        const findOneUser = await this.userModel.findById(id);
+        return findOneUser;
     }
 
     async findOneByName(name: string): Promise<UserDocument> {
@@ -32,10 +35,12 @@ export class UserRepository {
     }
 
     async update(id: string, user: UserModel): Promise <UserDocument> {
-        return await this.userModel.findByIdAndUpdate(id, user, {new: true});
+        const updatedUser = await this.userModel.findByIdAndUpdate(id, user, {new: true});
+        return updatedUser;
     }
 
     async delete(id: string): Promise<UserDocument> {
-        return await this.userModel.findByIdAndDelete(id);
+        const deletedUser = await this.userModel.findByIdAndDelete(id);
+        return deletedUser;
     }
 }

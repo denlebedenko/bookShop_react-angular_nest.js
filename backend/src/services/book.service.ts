@@ -102,28 +102,27 @@ export class BookService {
         return count;
     }
 
-    async getBooksinCart(booksid: string[]) {
-        const result = {};
+    async getBooksinCart(bookIdList: string[]) {
+        const result: Map<string, number> = new Map();
 
-        // tslint:disable-next-line:forin
-        for (const i in booksid) {
-            result[booksid[i]] = (result[booksid[i]] || 0) + 1;
-        }
-
-        const books = await this.bookRepository.booksInCart(booksid);
-
-        let totalPrice: number = 0;
-
-        let key: string;
-
-        books.map((book) => {
-            for (key in result) {
-                if (key === book.id) {
-                    const sum = book.price * result[key];
-                    totalPrice += sum;
-                }
+        bookIdList.forEach((item, index, array) => {
+            if (result.has(item)) {
+                let keyValue: number = result.get(item);
+                result.set(item, ++keyValue);
+                return;
             }
+            result.set(item, 1);
         });
+
+        const books: BookDocument[] = await this.bookRepository.booksInCart(bookIdList);
+
+        const totalPrice: number = books.reduce((amount, book, index, array) => {
+            if (result.has(book.id)) {
+                const quantity: number = result.get(book.id);
+                amount += book.price * quantity;
+            }
+            return amount;
+        }, 0);
 
         return {
             totalPrice,

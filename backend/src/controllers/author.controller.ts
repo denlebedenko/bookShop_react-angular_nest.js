@@ -5,7 +5,7 @@ import { AuthorService } from '../services';
 import { AuthorModel, AuthorCreateModel } from '../models';
 import { Roles } from '../common/guards/roles.decorator';
 import { RoleGuard } from '../common/guards/role.guard';
-import { AuthorDocument } from 'src/documents/author.documents';
+import { AuthorDocument } from 'src/documents/author.document';
 
 @ApiUseTags('authors')
 @ApiBearerAuth()
