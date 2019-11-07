@@ -1,0 +1,24 @@
+<div class="container ">
+    <div class="row justify-content-center">
+        <div class="form-group col-md-4">
+            <h1 class="title">Добавление нового пользователя:</h1>
+            <p>Name:</p>
+            <input [(ngModel)] = "userData.username" type="text" class="form-control" maxlength="19" placeholder="Change name...">
+            <p>Password:</p>
+             <input [(ngModel)] = "userData.password" type="text" class="form-control" placeholder="Change password...">
+             <p>Email:</p>
+            <input [(ngModel)] = "userData.email" type="text" class="form-control" placeholder="Change email...">
+            <p>Role:</p>
+            <mat-form-field>
+                <mat-label>Select user role</mat-label>
+                <mat-select [(ngModel)]="userData.role">
+                  <mat-option value="admin">admin</mat-option>
+                  <mat-option value="user">user</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row justify-content-center">
+                <button type="submit" class="btn" (click)="addUser()">Добавить пользователя</button>
+            </div>
+        </div>
+    </div>
+</div>

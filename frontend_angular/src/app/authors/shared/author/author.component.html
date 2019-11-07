@@ -1,0 +1,18 @@
+<div class="author_info row">
+    <div class="name col-5">
+        <div class="author_name row">
+            <div class="author_info_name">{{ author.firstName | titlecase }}</div>
+            <div class="author_info_lastName">{{ author.lastName | titlecase }}</div>
+        </div>
+    </div>
+    <div class="books col-7">
+        <div class="row justify-content-between">
+            <ul>
+                <li class="authors__book" *ngFor="let book of books">
+                    {{ book.title | titlecase }}
+                </li>
+            </ul>
+            <div class="close" (click)="deleteAuthor(author.id)" title="Удалить автора">&#215;</div>
+        </div>
+    </div>
+</div>

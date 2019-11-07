@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row align-items-center">
+      <div class="col">
+        <a href="#" routerLink="/home" class="btn__back btn"> &larr; Назад к списку</a>
+      </div>
+      <div class="col">
+        <button class="btn__clear btn" (click)="clearCartBtn()">Очистить корзину &#10006;</button>
+    </div>
+    <div class="col">
+      <button class="btn" (click)="this.bookService.pay(totalPrice)">Купить</button>
+    </div>
+    <div class="col price">
+     Общая сумма: <b>{{ countTotalPrice() }}$</b> 
+    </div>
+  </div>
+  <div class="row">
+    <p class="bookLength" *ngIf="books.length <= 0">К сожалению корзина пуста :(</p>
+    <app-book-item
+      *ngFor ="let book of books"
+      [book] = "book"
+      (click) = "checkLengthCart()"
+      >
+    </app-book-item>
+  </div>
+</div>

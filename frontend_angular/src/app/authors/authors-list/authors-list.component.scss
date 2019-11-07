@@ -1,0 +1,15 @@
+.btn {
+    color: rgb(186, 0, 233);
+    cursor: pointer;
+    &:hover {
+        border-bottom: 1px solid rgb(186, 0, 233);
+    }
+  } 
+
+.authors{
+    border: 1px solid grey;
+}
+
+.author-table {
+    margin-top: 10px
+}

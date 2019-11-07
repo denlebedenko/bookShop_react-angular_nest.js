@@ -1,0 +1,6 @@
+<div class="container">
+    <div class="header">
+        <button class="btn align-self-end" routerLink="/users/add-user">Добавить нового пользователя</button>
+    </div>
+    <app-user-item *ngFor="let user of users" [user]="user"></app-user-item>
+</div>

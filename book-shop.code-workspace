@@ -1,10 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "frontend"
+			"path": "backend"
 		},
 		{
-			"path": "backend"
+			"path": "frontend_react"
+		},
+		{
+			"path": "C:\\Users\\Anuitex\\angularProjects\\bookShop\\frontend_angular"
 		}
 	],
 	"settings": {

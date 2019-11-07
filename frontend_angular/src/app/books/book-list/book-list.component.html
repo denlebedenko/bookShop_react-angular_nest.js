@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row align-items-start searchLine">
+    <div class="col">
+    </div>
+    <div class="col-md-auto">
+      <input type="text" id="search" placeholder="Change name or author..." [(ngModel)] = "searchStr">
+    </div>
+    <div class="col col-lg-3 cart">
+      <button *ngIf ="authService.loggedIn()" routerLink="/home/cart" class="cart__btn btn">В корзину</button>
+      <button *ngIf ="authService.loggedIn()" (click)="authService.logout()" class="btn logout_btn">Выход</button>
+      <button *ngIf ="!authService.loggedIn()" class="btn logIn_btn " routerLink="/login">Вход</button>
+    </div>
+  </div>
+  <div class="row justify-content-center adminPanel" *ngIf ="authService.checkUserRole()" >
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button routerLink="/home/add-book"class="btn">Добавить книгу</button>
+      <button type="button" class="btn" routerLink="/users">Список пользователей</button>
+      <button type="button" class="btn" routerLink="/authors">Список авторов</button>
+    </div>
+  </div>
+  <div class="filter row">
+    <div class="">
+      <input [(ngModel)] = "queryData.minPrice" type="number" class="form-control" placeholder="Choose min price..." >
+    </div>
+    <div class="">
+      <input [(ngModel)] = "queryData.maxPrice" type="number" class="form-control" placeholder="Choose max price...">
+    </div>
+    <div class="">
+        <mat-form-field>
+            <mat-label>Choose type:</mat-label>
+            <mat-select [(ngModel)] = "queryData.typeBook">
+              <mat-option>None</mat-option>
+              <mat-option value="book">book</mat-option>
+              <mat-option value="magazine">magazine</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div>
+      <button class="btn filter__btn" (click)="changeQuery()">Применить</button>
+    </div>
+  </div>
+<div class="row justify-content-center">
+  <app-book-item
+    *ngFor ="let book of books | search: searchStr"
+    [book] = "book"
+    [authors]="book.authors">
+  </app-book-item>
+</div>
+<div class="row justify-content-center">
+  <ul class="pages">
+      <li class="page" *ngFor = "let page of pager" (click)="changePage()">
+          <a class="page-link">{{page}}</a>
+      </li>
+  </ul>
+</div>
+</div>

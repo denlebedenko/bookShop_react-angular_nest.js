@@ -1,0 +1,108 @@
+.card {
+    background-color:rgba(233, 232, 232, 0.836);
+    padding: 0;
+    width: 250px;
+    margin-bottom: 30px;
+    position: relative;
+    -moz-user-select: none; /* Mozilla Firefox */
+    -ms-user-select: none; /* Internet Explorer (не поддерживается) */
+    -o-user-select: none; /* Opera Presto (не поддерживается) */
+    -webkit-user-select: none; /* Google Chrome, Opera Next, Safari */
+    box-shadow: 12px -10px 10px -8px grey;
+    border: none;;
+    transition: .5s all ease;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 30px  rgb(186, 0, 233);
+  border: none;;
+}
+.card-text {
+  -moz-user-select: auto; /* Mozilla Firefox */
+  -ms-user-select: auto; /* Internet Explorer (не поддерживается) */
+  -o-user-select: auto; /* Opera Presto (не поддерживается) */
+  -webkit-user-select: auto; /* Google Chrome, Opera Next, Safari */
+  cursor: text;
+  min-height: 100px;
+}
+.btn {
+    background: rgb(186, 0, 233);
+    border: none;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.btn:hover {
+  background:transparent;
+  color: rgb(186, 0, 233);
+  border: 1px solid rgb(186, 0, 233);
+  box-sizing: border-box;
+}
+
+.btn-edit {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+    width: 75%;
+    margin: 0 auto;
+}
+.card-author {
+    text-transform: capitalize;
+}
+.card-img-top {
+  margin-top: 10px;
+  min-height: 300px;
+}
+.card-title {
+  font-size: 18px;
+}
+.cancel_choice{
+  position: absolute;
+  border: none;
+  width: 30px;
+  height: 30px;
+  color: rgb(186, 0, 233);
+  background: transparent;
+}
+
+.cancel_choice:focus {
+  outline: none;
+}
+
+.card .card__counter-books {
+  display: block;
+  position: absolute;
+  right: 2%;
+  font-size: 18px;
+  color: rgb(186, 0, 233);
+  cursor: default;
+}
+
+.admin-options {
+  padding: 25px 20px;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.book-description {
+  height: 100px;
+  overflow: scroll;
+}
+
+.form-control {
+  background: transparent;
+  border: 1px solid rgb(186, 0, 233);
+}
+
+.mat-form-field {
+  width: 100%;
+}

@@ -1,0 +1,83 @@
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.users {
+    border: 1px solid rgb(186, 0, 233);
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+    padding: 20px;
+
+}
+
+.user-info {
+    display: flex;
+}
+
+.user div {
+    margin-right: 5px;
+}
+
+.btn button {
+    margin-right: 10px;
+}
+
+.title {
+    text-transform: uppercase;
+    color: rgb(186, 0, 233);
+
+}
+.edit-user {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.edit-user label {
+    margin-right: 10px;
+}
+.saveBtn {
+    margin: 13px 0 0 30px;
+}
+
+.form-control {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin-bottom: -6px;
+    border-bottom: 1px solid grey;
+    width: 270px;
+}
+
+
+.mat-form-field {
+    display: block;
+}
+
+.role {
+    margin: 10px 0 0
+}
+
+@media (max-width: 998px) { 
+    .user-info  {
+        display: block;
+        width: 260px;
+    }
+
+    .info {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        button {
+            margin-bottom: 20px;
+        }
+    }
+
+    .edit-user {
+        display: block;
+    }
+}

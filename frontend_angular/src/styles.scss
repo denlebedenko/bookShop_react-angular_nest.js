@@ -1,0 +1,11 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.loader {
+  position: relative;
+  left: 50%;
+  top: 300px;
+}
+
+body {
+  background-image: linear-gradient(to right top, #daf9ff, #dcf6ff, #e1f3ff, #e7efff, #eeebff, #edebff, #ebecff, #eaecff, #e0f1ff, #d4f6ff, #c9fbff, #c6fffb);
+}

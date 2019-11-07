@@ -1,0 +1,21 @@
+<div class="container">
+        <div class="row">
+            <div class="btn" routerLink="/authors/add-author">Добавить нового автора</div>
+        </div>
+        <div class="row justify-content-around author-table">
+            <div class="author_name col-4">
+                <p>Список авторов</p>
+            </div>
+            <div class="author_collections col-4">
+                Издания автора
+            </div>
+        </div>
+        <div class="container authors">
+            <app-author
+                *ngFor="let author of authors"
+                [author]="author"
+                [books]="author.books"
+            ></app-author>
+        </div>
+        
+</div>

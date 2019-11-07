@@ -1,0 +1,113 @@
+#search {
+    width: 400px;
+    border: 1px solid rgb(186, 0, 233);
+    border-radius: 4px;
+    padding: 7px;
+}
+.container { 
+  -moz-user-select: none; /* Mozilla Firefox */
+  -ms-user-select: none; /* Internet Explorer (не поддерживается) */
+  -o-user-select: none; /* Opera Presto (не поддерживается) */
+  -webkit-user-select: none; /* Google Chrome, Opera Next, Safari */
+}
+
+.cart__btn {
+  color:rgb(186, 0, 233);
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.card__counter-books {
+  position: absolute;
+  right: 2%;
+  font-size: 18px;
+  color: rgb(186, 0, 233);
+}
+
+.logout_btn, .logIn_btn, .btn  {
+  color: rgb(186, 0, 233);
+}
+
+.logIn_btn {
+  margin-left: 65%;
+}
+
+button {
+  margin-right: 5px;
+  &:hover {
+    border: 1px solid rgb(186, 0, 233);
+  }
+}
+
+
+input {
+  background: transparent;
+
+}
+
+.filter {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.filter__btn {
+  margin: 20px 0 0 30px;
+}
+
+.form-control {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 9px 50px 0px 40px;
+  border-bottom: 1px solid grey;
+  width: 85%;
+}
+
+.mat-form-field {
+  display: block;
+  width: 85%;
+  margin: 1px 21px 0 40px;
+}
+
+.pages {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.page {
+  margin-right: 10px;
+  list-style: none;
+  cursor: pointer;
+  color: rgb(186, 0, 233);
+  &:hover {
+    border-bottom: 1px solid rgb(186, 0, 233);
+  }
+}
+.page-link {
+  background: transparent;
+  border: none;
+}
+
+.searchLine {
+  position: relative;
+  bottom: 50px;
+}
+
+@media (max-width: 998px) {
+  .mat-form-field {
+    width: 100%;
+  }
+.filter__btn {
+  margin-left: 70px;  
+}
+.logIn_btn {
+  margin-top: 10%;
+  margin-left: 40%;
+}
+
+#search {
+  width: 300px;
+}
+}

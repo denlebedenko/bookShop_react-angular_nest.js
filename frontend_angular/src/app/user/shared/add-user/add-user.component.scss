@@ -1,0 +1,30 @@
+.btn {
+    background: rgb(186, 0, 233);
+    border: none;
+    margin-right: 5px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: transparent;
+    border: 1px solid rgb(186, 0, 233);
+    color: rgb(186, 0, 233);
+}
+
+.title {
+    color: rgb(186, 0, 233);
+    font-size: 35px;
+    background-image: linear-gradient(to right, #ff00de, #ff05d5, #ff0dcd, #ff15c5, #ff1cbd, #fe28c0, #fc31c4, #fb39c7, #f646d6, #f053e4, #e85ef2, #df69ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-control {
+    background: transparent;
+    border: 1px solid rgb(186, 0, 233);
+}
+
+.mat-form-field {
+    width: 100%;
+}

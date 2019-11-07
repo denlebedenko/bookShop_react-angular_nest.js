@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="users">
+            <div class="user">
+                <div class="user-info">
+                    <div class="user-name info"><span class="title">username:</span> {{ user.username }}</div>
+                    <div class="user-email info"><span class="title">email:</span> {{ user.email }} </div>
+                    <div class="user-role info"><span class="title">role:</span> {{ user.role }} </div>
+                </div>
+                <div class="btn">
+                    <button type="button" class="btn btn-success" (click)="editUser()">Редактировать</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Удалить</button>
+                </div>
+            </div>
+            <div class="edit-user" *ngIf="updateUserInfo">
+                <label>Name:
+                    <input [(ngModel)]="user.username" class="form-control" placeholder="name">
+                </label>
+                <label>Email:
+                    <input [(ngModel)]="user.email" class="form-control" placeholder="email">
+                </label>
+                <label class="role">Role:
+                    <mat-form-field>
+                        <mat-select [(ngModel)]="user.role">
+                          <mat-option value="admin">admin</mat-option>
+                          <mat-option value="user">user</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </label>
+                <button type="button" class="btn btn-success saveBtn" (click)="updateUser(user.id, user)">Сохранить</button>
+            </div>
+        </div> 
+    </div>
+</div>

@@ -29,7 +29,7 @@ const config = new Environment();
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: config.jwt,
+      secret: config.jwtSecret,
       signOptions: { expiresIn: '10m' },
     }),
   ],

@@ -1,0 +1,57 @@
+<div class="col-md-3">
+    <div class="card">
+      <div class="counters" *ngIf="bookService.selectedBook">
+          <button class="cancel_choice" (click)="cancelChoiceBtn(book.id)"  title="Удалить из корзины">&#10006;</button>
+          <a class="card__counter-books" title="Количество книг в корзине">
+            {{ bookService.bookCountLength(book.id) }}
+          </a>
+      </div>
+      <button class="btn btn-edit" *ngIf="authService.checkUserRole()" (click)="bookService.editbook()">Редактировать</button>
+        <img src="{{ book.coverUrl }}" class="card-img-top" alt="...">
+        <div class="card-body" [ngClass]="{ hidden: bookService.editBook }">
+            <h5 class="card-title">{{ book.title | uppercase }}</h5>
+            <p class="card-text">{{ book.description }}</p>
+            <p class="card-type">Genre: {{ book.genre }}</p>
+            <p class="card-author" 
+                *ngFor="let author of authors"
+            >Author: {{ author.firstName }} {{ author.lastName }}
+            </p>
+            <p class="card-price">Price: {{ book.price }} $</p>
+            <p class="card-price">Type: {{ book.type | titlecase }}</p>
+            <button *ngIf="!bookService.selectedBook" class="btn btn-primary col-md-12" type = "button" (click)="buyBtn()">Buy</button>
+            <button  *ngIf="bookService.selectedBook" class="btn btn-primary col-md-12" type="button" (click)="buyBtn()">One more</button>
+        </div>
+        <div class="admin-options" *ngIf="bookService.editBook">
+            <label>Photo:
+                <input [(ngModel)]="book.coverUrl" class="form-control" placeholder="coverUrl">
+            </label>
+            <label>Title:
+                <input [(ngModel)]="book.title" class="form-control" placeholder="Title">
+            </label>
+            <label>Description:
+                <input [(ngModel)]="book.description" type="textarea" class="form-control book-description" placeholder="Description">
+            </label>
+            <label>Genre:
+                <input [(ngModel)]="book.genre" class="form-control" placeholder="Genre">
+            </label>
+            <label>Author:
+                <input [(ngModel)]="book.author" class="form-control" placeholder="Author">
+            </label>
+            <label>Price:
+                <input [(ngModel)]="book.price" class="form-control" placeholder="Price">
+            </label>
+            <label>Type:
+                <mat-form-field>
+                    <mat-select [(ngModel)]="book.type">
+                      <mat-option value="book">book</mat-option>
+                      <mat-option value="magazine">magazine</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </label>
+            <div class="btns">
+                <button type="button" class="btn btn-success" (click)="updateBook(book.id, book)">Сохранить</button>
+                <button type="button" class="btn btn-danger" (click)="deleteBook(book.id)">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>

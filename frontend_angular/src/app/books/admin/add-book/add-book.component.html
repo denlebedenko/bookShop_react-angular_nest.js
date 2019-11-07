@@ -1,0 +1,30 @@
+<div class="container ">
+    <div class="row justify-content-center">
+        <div class="form-group col-md-4">
+            <h1 class="title">Добавление новой книги:</h1>
+            <p>Title:</p>
+            <input [(ngModel)] = "bookData.title" type="text" class="form-control" maxlength="19" placeholder="Change title...">
+            <p>Price:</p>
+            <input [(ngModel)] = "bookData.price"type="number" class="form-control" placeholder="Change price...">
+            <p>Author:</p>
+            <input [(ngModel)] = "bookData.author" type="text" class="form-control" placeholder="Change author...">
+            <p>Genre:</p>
+             <input [(ngModel)] = "bookData.genre" type="text" class="form-control" placeholder="Change genre...">
+            <p>Description:</p>
+            <input [(ngModel)] = "bookData.description" type="text" class="form-control" maxlength="100" placeholder="Provide a brief description">
+            <p>Cover URL:</p>
+            <input [(ngModel)] = "bookData.coverUrl" type="text" class="form-control" placeholder="Input url cover book">
+            <p>Type: </p>
+            <mat-form-field>
+                <mat-label>Select type of book</mat-label>
+                <mat-select [(ngModel)]="bookData.type">
+                   <mat-option value="book">book</mat-option>
+                   <mat-option value="magazine">magazine</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row justify-content-center">
+                <button type="submit" class="btn" (click)="addBook()">Добавить книгу</button>
+            </div>
+        </div>
+    </div>
+</div>
