@@ -31,19 +31,23 @@ export class BookListComponent implements OnInit {
     this.books = [];
     this.pager = [];
     this.searchStr = '';
-    this.countPage();
   }
 
 
   ngOnInit() {
+
     this.getbookList();
+    this.countPage();
+
   }
 
   async countPage(): Promise<void> {
     const counter = await this.bookService.getCountPages().toPromise();
+
     for (let i = 0; i < counter; i++) {
       this.pager.push((counter - i).toString());
     }
+
   }
 
   async getbookList(): Promise<void> {
@@ -54,10 +58,11 @@ export class BookListComponent implements OnInit {
     this.books = await this.bookService.getBooks(this.queryData).toPromise();
   }
 
- async changePage(): Promise<void> {
-    this.queryData.page = '2';
+  async changePage(page: string): Promise<void> {
+    this.queryData.page = page;
     this.books = await this.bookService.getBooks(this.queryData).toPromise();
   }
+
 }
 
 

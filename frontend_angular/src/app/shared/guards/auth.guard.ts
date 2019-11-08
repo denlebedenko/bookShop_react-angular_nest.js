@@ -14,11 +14,11 @@ export class AuthGuard implements CanActivate {
 
     const jwtHelper = new JwtHelperService();
 
-    if (token && !jwtHelper.isTokenExpired(token)) {
-      return true;
-    } else {
+    if (!token && jwtHelper.isTokenExpired(token)) {
       this.router.navigate(['/login']);
       return false;
     }
+
+    return true;
   }
 }

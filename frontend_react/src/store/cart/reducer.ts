@@ -9,13 +9,13 @@ export interface CartState {
 const bookIds = JSON.parse(tokenStorage.getBooks()) || [];
 
 
-const initialStore:CartState = {
+const initialStore: CartState = {
     books: bookIds,
 }
 
-const cartReducer = (state:CartState = initialStore, action:any) => {
-        const bookId = action.payload;
-    switch(action.type) {
+const cartReducer = (state: CartState = initialStore, action: any) => {
+    const bookId = action.payload;
+    switch (action.type) {
         case 'ADD_TO_CART':
 
             const purchasedBookId = {
@@ -27,13 +27,13 @@ const cartReducer = (state:CartState = initialStore, action:any) => {
             };
             return purchasedBookId;
 
-        case 'REMOVE_FROM_CART': 
+        case 'REMOVE_FROM_CART':
             const findBook = state.books.findIndex((book: string) => book === bookId);
 
             const newList = {
                 ...state,
                 books: [
-                    ...state.books.filter( (id,index) => index !== findBook),
+                    ...state.books.filter((id, index) => index !== findBook),
                 ],
             };
 
@@ -42,10 +42,10 @@ const cartReducer = (state:CartState = initialStore, action:any) => {
         default:
             return {
                 ...state
-            };  
+            };
     }
 
-    
+
 
 }
 

@@ -6,6 +6,7 @@ import { UserModel } from 'src/app/core/models/user.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AdminGuard implements CanActivate {
 
   constructor(private router: Router) { }
@@ -16,15 +17,11 @@ export class AdminGuard implements CanActivate {
     const token: string = localStorage.getItem('token');
     const user: UserModel = jwtHelper.decodeToken(token);
 
-    if (token) {
-      if (user.role === 'admin') {
-        return true;
-      } else {
-        this.router.navigate(['/login']);
-        return false;
-        }
-      } else {
-        return false;
-      }
+    if (!token || !(user.role === 'admin')) {
+      this.router.navigate(['/login']);
+      return false;
+    }
+
+    return true;
    }
 }

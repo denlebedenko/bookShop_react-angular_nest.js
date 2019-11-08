@@ -12,11 +12,11 @@ const routes: Routes = [
         path: '',
         redirectTo: 'user',
         pathMatch: 'full',
-        canActivate: [AuthGuard, AdminGuard],
     },
     {
         path: 'users',
         component: UserComponent,
+        canActivate: [AuthGuard, AdminGuard],
         children: [
             {
                 path: '',

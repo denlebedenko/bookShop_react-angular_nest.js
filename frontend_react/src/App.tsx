@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 
 import BookList from './components/book-list/book-list';
-import Header from './components/header/header';  
+import Header from './components/header/header';
 
 
 import queryReducer from './store/books/reducer';
@@ -18,7 +18,7 @@ import cartReducer from './store/cart/reducer';
 import CartWrapper from './components/cart/cart-wrapper';
 
 const reducer = combineReducers({
-  query: queryReducer, 
+  query: queryReducer,
   auth: authReducer,
   cart: cartReducer,
 });
@@ -30,12 +30,12 @@ const App: React.FC = () => {
     <Provider store={store}>
       <React.Fragment>
         <Router>
-          <Header/>
+          <Header />
           <Switch>
-            <Route exact path="/">  
-              <BookList/>
+            <Route exact path="/">
+              <BookList />
             </Route>
-            <PrivateRoute exact path="/cart" Component={CartWrapper}/>
+            <PrivateRoute exact path="/cart" Component={CartWrapper} />
           </Switch>
         </Router>
       </React.Fragment>

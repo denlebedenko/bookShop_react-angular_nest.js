@@ -19,6 +19,6 @@ export class Environment {
 
     constructor() {
         const pathFile: string = `${process.env.NODE_ENV || 'development'}.env`;
-        config({path: pathFile});
+        config({ path: pathFile });
     }
 }

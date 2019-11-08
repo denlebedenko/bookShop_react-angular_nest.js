@@ -9,7 +9,7 @@ const initialQuery: QueryBook = {
 
 const queryReducer = (state: QueryBook = initialQuery, action: any) => {
     switch (action.type) {
-        case 'GET_FILTER' :
+        case 'GET_FILTER':
             const newList = {
                 minPrice: action.payload.minPrice,
                 maxPrice: action.payload.maxPrice,
@@ -17,7 +17,7 @@ const queryReducer = (state: QueryBook = initialQuery, action: any) => {
             };
             return newList;
 
-        case 'CHANGE_PAGE': 
+        case 'CHANGE_PAGE':
             return {
                 page: action.payload.page,
                 ...state,
@@ -30,12 +30,12 @@ const queryReducer = (state: QueryBook = initialQuery, action: any) => {
                 typeBook: '',
             };
             return defaultList;
-            
+
 
         default:
             return {
                 ...state
-            };   
+            };
     };
 };
 

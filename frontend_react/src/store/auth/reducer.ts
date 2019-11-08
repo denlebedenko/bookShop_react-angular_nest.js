@@ -13,29 +13,29 @@ const initialUserData: UserDataModel = {
 }
 
 
-const authReducer = (state: UserDataModel = initialUserData, action: any ) => {
-    switch(action.type) {
+const authReducer = (state: UserDataModel = initialUserData, action: any) => {
+    switch (action.type) {
         case 'USER_AUTH':
-        const loggedInUser = {
-            username: action.payload.username,
-            role: action.payload.role,
-            token: action.payload.token,
-        }
-        return loggedInUser
+            const loggedInUser = {
+                username: action.payload.username,
+                role: action.payload.role,
+                token: action.payload.token,
+            }
+            return loggedInUser
 
-        case 'LOG_OUT': 
-        const loggedOutUser = {
-            ...state,
-            username: '',
-            role: '',
-            token:'',
-        }
-        return loggedOutUser;
+        case 'LOG_OUT':
+            const loggedOutUser = {
+                ...state,
+                username: '',
+                role: '',
+                token: '',
+            }
+            return loggedOutUser;
 
 
-        
+
         default:
-            return{
+            return {
                 ...state
             }
     }
@@ -43,4 +43,4 @@ const authReducer = (state: UserDataModel = initialUserData, action: any ) => {
 
 
 
-export  { authReducer }
+export { authReducer }

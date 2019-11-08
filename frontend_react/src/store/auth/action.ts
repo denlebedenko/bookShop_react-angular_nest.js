@@ -1,12 +1,12 @@
 import { UserDataModel } from "../../models/user-data.model";
 
 const authUser = (loginData: UserDataModel) => ({
-    type:'USER_AUTH',
+    type: 'USER_AUTH',
     payload: loginData,
 });
 
 const logOut = () => ({
-    type:'LOG_OUT',
+    type: 'LOG_OUT',
 });
 
 

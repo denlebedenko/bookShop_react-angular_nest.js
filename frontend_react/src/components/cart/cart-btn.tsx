@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TokenStorage from '../../services/token.storage';
-import { Box, withStyles, Theme, createStyles, Badge  } from '@material-ui/core';
+import { Box, withStyles, Theme, createStyles, Badge } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import './cart.scss';
@@ -23,34 +23,34 @@ const StyledBadge1 = withStyles((theme: Theme) =>
 
 
 
-const CartBtn: React.FC = (props:any) => {
+const CartBtn: React.FC = (props: any) => {
 
-    const { token, bookIds } = props;
+  const { token, bookIds } = props;
 
-    const amount = bookIds.length
+  const amount = bookIds.length
 
-    let logged = tokenStorage.loggedIn(token);
+  let logged = tokenStorage.loggedIn(token);
 
-    const cart = <Box m={1}>
-                    <IconButton aria-label="cart">
-                    <StyledBadge1 badgeContent={amount} color="primary">
-                        <ShoppingCartIcon className="cart_icon" />
-                    </StyledBadge1>
-                    </IconButton>
-                </Box>
-    return (
-        <div>
-            { logged ? cart : null}
-        </div>
-    );
+  const cart = <Box m={1}>
+    <IconButton aria-label="cart">
+      <StyledBadge1 badgeContent={amount} color="primary">
+        <ShoppingCartIcon className="cart_icon" />
+      </StyledBadge1>
+    </IconButton>
+  </Box>
+  return (
+    <div>
+      {logged ? cart : null}
+    </div>
+  );
 };
 
 const mapStateToProps = (state: any) => {
-    return {
-      token: state.auth.token,
-      bookIds: state.cart.books,
-    };
+  return {
+    token: state.auth.token,
+    bookIds: state.cart.books,
   };
-  
-  export default connect(mapStateToProps)(CartBtn);
-  
+};
+
+export default connect(mapStateToProps)(CartBtn);
+

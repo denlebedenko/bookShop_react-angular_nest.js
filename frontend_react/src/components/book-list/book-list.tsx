@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 import { BookModel } from 'models/book.model';
 import Filter from '../filter/filter';
 import { addToCart } from '../../store/cart/action';
+import { bindActionCreators } from 'redux';
 
 const bookService = new BookService();
-const BookList: React.FC = ({query, onAddToCart}:any) => {
+const BookList: React.FC = ({query, addedBook}:any) => {
 
    const [books, setBookList] = useState<BookModel[]>([]);
 
@@ -33,7 +34,7 @@ const BookList: React.FC = ({query, onAddToCart}:any) => {
                     description={book.description}
                     coverUrl={book.coverUrl} 
                     type={book.type}
-                    addToCart= {() => onAddToCart(book.id)}
+                    addToCart= {() => addedBook(book.id)}
                     /> 
     });
 
@@ -63,8 +64,9 @@ const mapStateToProps = (state:any) => {
 };
 
 const mapDispatchToProps = (dispatch:any) => {
+    const addedBook = bindActionCreators(addToCart, dispatch)
     return { 
-        onAddToCart: (id: string) => dispatch(addToCart(id)),
+        addedBook
     };
 };
 

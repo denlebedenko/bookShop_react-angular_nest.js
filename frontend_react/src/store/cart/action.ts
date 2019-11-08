@@ -1,9 +1,9 @@
 import TokenStorage from "../../services/token.storage";
 
 const tokenStorage = new TokenStorage();
-const bookIds= JSON.parse(tokenStorage.getBooks()) || [];
+const bookIds = JSON.parse(tokenStorage.getBooks()) || [];
 
-const addToCart = (id:string) => {
+const addToCart = (id: string) => {
 
     bookIds.push(id);
     tokenStorage.setBooks(JSON.stringify(bookIds));
@@ -15,7 +15,7 @@ const addToCart = (id:string) => {
 };
 
 
-const removedFromCart = (id:any) => {
+const removedFromCart = (id: string) => {
 
     const findBook = bookIds.findIndex((book: string) => book === id);
     bookIds.splice(findBook, 1);
@@ -29,7 +29,7 @@ const removedFromCart = (id:any) => {
     };
 };
 
-export { 
+export {
     addToCart,
     removedFromCart,
 }

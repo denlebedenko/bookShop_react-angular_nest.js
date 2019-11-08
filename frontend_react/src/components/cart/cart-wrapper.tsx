@@ -8,18 +8,18 @@ import Cart from './cart';
 import { connect } from 'react-redux';
 import CartEmpty from './cart-empty';
 
-const CartWrapper: React.FC = ({cart}: any) => {
+const CartWrapper: React.FC = ({ cart }: any) => {
 
     return (
         <div>
             <Container>
-                {cart.length > 0 ? <Cart/> : <CartEmpty/>}
+                {cart.length > 0 ? <Cart /> : <CartEmpty />}
             </Container>
         </div>
     );
 };
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: any) => {
     return {
         cart: state.cart.books,
     };

@@ -71,11 +71,11 @@ export class BookService {
 
     public loadStripe() {
         if (!window.document.getElementById('stripe-script')) {
-            const s = window.document.createElement('script');
-            s.id = 'stripe-script';
-            s.type = 'text/javascript';
-            s.src = 'https://checkout.stripe.com/checkout.js';
-            window.document.body.appendChild(s);
+            const stripeScript = window.document.createElement('script');
+            stripeScript.id = 'stripe-script';
+            stripeScript.type = 'text/javascript';
+            stripeScript.src = 'https://checkout.stripe.com/checkout.js';
+            window.document.body.appendChild(stripeScript);
         }
     }
 
@@ -85,8 +85,6 @@ export class BookService {
             locale: 'auto',
             token: (token: any) => {
                 this.createCustomer(token, amount).subscribe(res => {
-                    console.log(res);
-                    console.log(token);
                     alert('Token Created!!');
             });
         }
@@ -95,16 +93,22 @@ export class BookService {
         handler.open({
             name: 'BookShop',
             description: 'Fill in all the fields',
-            amount: +amount * 100
+            amount: this.counterAmount(+amount),
         });
     }
 
     public createCustomer(token: string, amount: string) {
+
         const data: StripeData = {
             token,
             amount,
         };
         return this.http.post<any>(`${environment.endPoint.stripeUrl}`, data);
+
+    }
+
+    private counterAmount(amount: number) {
+        return amount * 100;
     }
 }
 
