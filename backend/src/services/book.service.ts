@@ -7,7 +7,7 @@ import { QueryBook } from '../models/filter/query.interface';
 
 @Injectable()
 export class BookService {
-    constructor(private readonly bookRepository: BookRepository) {}
+    constructor(private readonly bookRepository: BookRepository) { }
 
     async create(book: BookCreateModel): Promise<BookModel> {
         const newBook: BookDocument = new Book({
@@ -121,6 +121,7 @@ export class BookService {
                 const quantity: number = result.get(book.id);
                 amount += book.price * quantity;
             }
+
             return amount;
         }, 0);
 

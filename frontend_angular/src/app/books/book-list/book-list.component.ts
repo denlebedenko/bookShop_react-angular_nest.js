@@ -24,9 +24,10 @@ export class BookListComponent implements OnInit {
     typeBook: '',
   };
 
-  constructor(public bookService: BookService,
-              public authGuard: AuthGuard,
-              public authService: AuthService
+  constructor(
+    public bookService: BookService,
+    public authGuard: AuthGuard,
+    public authService: AuthService
   ) {
     this.books = [];
     this.pager = [];
