@@ -3,14 +3,11 @@ import BookService from '../../services/book.service';
 import { Container, Grid } from '@material-ui/core';
 import BookItem from './book-item/book-item';
 import { connect } from 'react-redux';
-import { BookModel } from '../../models';
+import { BookModel } from 'models/book.model';
 import Filter from '../filter/filter';
 import { addToCart } from '../../store/cart/action';
-import { Environment } from '../../environment/environment';
-
 
 const bookService = new BookService();
-const config = new Environment();
 const BookList: React.FC = ({query, onAddToCart}:any) => {
 
    const [books, setBookList] = useState<BookModel[]>([]);
@@ -20,10 +17,7 @@ const BookList: React.FC = ({query, onAddToCart}:any) => {
         setBookList(booklist);
         return booklist;
     };
-    debugger
-        console.log(config.REACT_APP_GET_CART_ITEMS)
 
-   
    useEffect(() => {
         getBooks();
     }, [query]);

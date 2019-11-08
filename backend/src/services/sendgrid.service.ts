@@ -12,14 +12,12 @@ export class SendGridService {
         setApiKey(this.config.sendgrid);
     }
 
-    send() {
+    send(emailUser: string) {
         const msg = {
-            to: 'lebedenkodd@gmail.com',
+            to: emailUser,
             from: 'lebedenkodd@gmail.com',
             subject: 'Sending with Twilio SendGrid is Fun',
-            template_id: 'd-3a897e3bbed8440ea3db38934732f15e',
-            text: 'and easy to do anywhere, even with Node.js',
-            html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+            template_id: this.config.sendgrid_template,
         };
         return send(msg);
     }

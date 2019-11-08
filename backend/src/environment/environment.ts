@@ -37,6 +37,10 @@ export class Environment {
         return process.env.stripe;
     }
 
+    get sendgrid_template(): string  {
+        return process.env.sendgrid_template_id;
+    }
+
     constructor() {
         const filePath: string = `${process.env.NODE_ENV || 'develompent'}.env`;
         const environmentConfiguration: dotenv.DotenvParseOutput = dotenv.parse(fs.readFileSync(filePath));

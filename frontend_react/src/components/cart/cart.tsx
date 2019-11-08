@@ -19,8 +19,6 @@ const Cart: React.FC = ({cart, addToCart, removedFromCart}:any) => {
         const items = await cartService.getCartItems(cart);
         const { totalPrice, books }  = items;
 
-        console.log(books)
-
         setTotalPrice(totalPrice);
         setBooks(books);
         return books;

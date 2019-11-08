@@ -37,7 +37,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  // app.useGlobalFilters(new ExceptionFilterCustom(), new ApplicationExceptionFilter());
+  app.useGlobalFilters(new ExceptionFilterCustom(), new ApplicationExceptionFilter());
   await app.init();
 
   http.createServer(server).listen(config.port);

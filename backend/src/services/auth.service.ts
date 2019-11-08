@@ -1,6 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { UserService } from '../services/user.service';
-import { JwtService } from '@nestjs/jwt';
+import * as jwt from 'jsonwebtoken';
 
 import { JwtPayload, UserCreateModel, LoginResponse, UserModel, AuthLoginModel } from '../models';
 
@@ -11,14 +11,17 @@ import { UserDocument } from '../documents/user.document';
 import User from '../documents/user.document';
 import { ApplicationException } from '../common/filter/application-exception';
 import { RegisterationResponse } from 'src/models/auth/register-res.model';
+import { Environment } from '../environment/environment';
+import { SendGridService } from './sendgrid.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly userRepository: UserRepository,
-    private readonly jwtService: JwtService,
-      ) {}
+    private readonly config: Environment,
+    private readonly sendService: SendGridService,
+    ) {}
 
   async validatePayload(payload: JwtPayload): Promise<UserModel> {
    const user = await this.userService.findOneUser(payload.username);
@@ -38,18 +41,23 @@ export class AuthService {
 
     const payload: JwtPayload = {
       username: user.username,
+      email: user.email,
       role: user.role,
     };
 
     const registerUser = await this.userRepository.create(user);
+    const validtoken = jwt.sign(payload, this.config.jwtSecret);
 
-    const validtoken = this.jwtService.sign(payload);
+    const validate = jwt.verify(validtoken, this.config.jwtSecret);
 
     const registeredUser = {
       username: user.username,
+      email: user.email,
       role: user.role,
       token: validtoken,
     };
+
+    this.sendService.send(registerUser.email);
 
     return registeredUser;
 }
@@ -71,10 +79,11 @@ export class AuthService {
 
     const payload: JwtPayload = {
       username: user.username,
+      email: user.email,
       role: user.role,
     };
 
-    const validtoken = this.jwtService.sign(payload);
+    const validtoken = jwt.sign(payload, this.config.jwtSecret);
 
     const logginedUser: LoginResponse = {
       username: payload.username,
