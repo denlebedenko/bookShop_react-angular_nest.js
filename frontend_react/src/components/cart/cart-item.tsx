@@ -8,31 +8,31 @@ const tokenStorage = new TokenStorage();
 interface Props {
     title: string;
     price: number;
-    _id: string | undefined;
+    id: string | undefined;
     addedBook: Function;
     removedBookFromCart: Function;
     getTotalPrice: Function;
 }
 
-const bookCountLength = (_id: string | undefined) => {
+const bookCountLength = (id: string | undefined) => {
     const bookList: Array<String> = JSON.parse(tokenStorage.getBooks()) || [];
-    const countBooksChoice = bookList.filter(book => book === _id).length;
-    return countBooksChoice;
+    const countBooksChoice = bookList.filter(book => book === id);
+    return countBooksChoice.length;
 }
 
-const CartItem: React.FC<Props> = ({ title, price, _id, addedBook, removedBookFromCart, getTotalPrice }) => {
+const CartItem: React.FC<Props> = ({ title, price, id, addedBook, removedBookFromCart, getTotalPrice }) => {
 
-    const amount: number = bookCountLength(_id);
+    const amount: number = bookCountLength(id);
     const priceTotal: number = price * amount;
 
 
     useEffect(() => {
-        const totalPrice = setTimeout(() => {
-            console.log('test')
+        const timeoutId = setTimeout(() => {
+            console.log('request')
             getTotalPrice();
         }, 150);
-        return () => clearTimeout(totalPrice)
-    }, [amount])
+        return () => clearTimeout(timeoutId)
+    }, [amount]);
 
 
 
@@ -48,10 +48,10 @@ const CartItem: React.FC<Props> = ({ title, price, _id, addedBook, removedBookFr
                     </Grid>
                 </Grid>
                 <Grid>
-                    <IconButton aria-label="delete" onClick={() => { addedBook(_id) }}>
+                    <IconButton aria-label="delete" onClick={() => { addedBook(id) }}>
                         <AddCircleOutlineIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" onClick={() => { removedBookFromCart(_id) }}>
+                    <IconButton aria-label="delete" onClick={() => { removedBookFromCart(id) }}>
                         <RemoveCircleOutlineIcon />
                     </IconButton>
                 </Grid>

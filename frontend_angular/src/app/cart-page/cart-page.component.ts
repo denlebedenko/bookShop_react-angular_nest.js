@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookModel } from 'src/app/core/models/book.model';
 import { isArray } from 'util';
 import { BookService } from 'src/app/core/services/book.service';
@@ -13,29 +13,37 @@ import { BookService } from 'src/app/core/services/book.service';
 export class CartPageComponent implements OnInit {
 
   checkLocalStg: string = localStorage.getItem('book');
-  books: Array<BookModel> = JSON.parse(this.checkLocalStg) || [];
-  totalPrice: number = this.countTotalPrice();
 
-  constructor(public bookService: BookService) {
-    this.checkDuplicateBooks();
-    this.countTotalPrice();
+  books: Array<BookModel> = [];
+  total: number;
+
+  constructor(public bookService: BookService,
+  ) {
   }
 
   ngOnInit() {
+    this.countTotalPrice();
     this.bookService.loadStripe();
+    this.checkDuplicateBooks();
   }
 
+  async countTotalPrice(): Promise<void> {
+    let bookList: Array<BookModel>;
+    bookList = JSON.parse(this.checkLocalStg) || [];
+
+    const bookIds = bookList.map(book => book.id.toString());
+
+    const books = await this.bookService.getTotalPrice(bookIds).toPromise()
+      .then(res => {
+        const { totalPrice, booksInCart } = res;
+        this.total = totalPrice;
+        this.books = booksInCart;
+      });
+  }
 
   checkDuplicateBooks() {
     let bookList: Array<BookModel>;
-    let checkLocalStg: string;
-
-    checkLocalStg = localStorage.getItem('book');
-    bookList = JSON.parse(checkLocalStg) || [];
-
-    const uniqIds: boolean[] = [];
-    const filtered = bookList.filter(obj => !uniqIds[obj.id] && (uniqIds[obj.id] = true));
-    this.books = filtered;
+    bookList = JSON.parse(this.checkLocalStg) || [];
   }
 
   clearCartBtn() {
@@ -45,29 +53,11 @@ export class CartPageComponent implements OnInit {
 
   checkLengthCart() {
     let bookList: Array<BookModel>;
-    let checkLocalStg: string;
-
-    checkLocalStg = localStorage.getItem('book');
-    bookList = JSON.parse(checkLocalStg) || [];
+    bookList = JSON.parse(this.checkLocalStg) || [];
 
     if (isArray(bookList) && bookList.length === 0) {
       this.books = [];
     }
-  }
-
-  countTotalPrice() {
-    let bookList: Array <BookModel>;
-    let checkLocalStg: string;
-    let countSum: number;
-
-    countSum = 0;
-    checkLocalStg = localStorage.getItem('book');
-    bookList = JSON.parse(checkLocalStg) || [];
-
-    for (const key of bookList) {
-      countSum += key.price;
-    }
-    return countSum;
   }
 }
 

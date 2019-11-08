@@ -19,7 +19,7 @@ export class BookItemComponent implements AfterContentChecked {
   constructor(private changeDetector: ChangeDetectorRef,
               public bookService: BookService,
               public authService: AuthService) {
-    this.bookService.checkSelectBooks(this.book);
+    this.bookService.checkSelectBooks();
   }
 
   ngAfterContentChecked(): void {
@@ -57,9 +57,7 @@ export class BookItemComponent implements AfterContentChecked {
     const findBook = bookList.findIndex(book => book.id === id);
     bookList.splice(findBook, 1);
 
-    if (!bookList.some(book => book.id === id)) {
-      this.bookService.selectedBook = false;
-    }
+    this.bookService.selectedBook = bookList.some(book => book.id === id);
 
     const bookString: string = JSON.stringify(bookList);
     localStorage.setItem('book', bookString);

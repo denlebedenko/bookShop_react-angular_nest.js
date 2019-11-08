@@ -17,11 +17,11 @@ const Cart: React.FC = ({ cart, addToCart, removedFromCart }: any) => {
 
     const getCartItems = async () => {
         const items = await cartService.getCartItems(cart);
-        const { totalPrice, books } = items;
+        const { totalPrice, booksInCart } = items;
 
         setTotalPrice(totalPrice);
-        setBooks(books);
-        return books;
+        setBooks(booksInCart);
+        return booksInCart;
     };
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const Cart: React.FC = ({ cart, addToCart, removedFromCart }: any) => {
             title={book.title}
             price={book.price}
             key={book.id}
-            _id={book._id}
+            id={book.id}
             addedBook={addToCart}
             removedBookFromCart={removedFromCart}
             getTotalPrice={getCartItems} />

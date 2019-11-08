@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { QueryBook } from '../models/query-books.model';
 import { environment } from 'src/environments/environment';
 import { StripeData } from '../models/stripeData.model';
+import { CartResponse } from '../models/cart-res.model';
 
 @Injectable()
 
@@ -36,37 +37,33 @@ export class BookService {
         return this.http.get<number>(`${environment.endPoint.booksUrl}/count`);
     }
 
+    public getTotalPrice(ids: string[]): Observable<CartResponse> {
+        return this.http.post<CartResponse>(environment.endPoint.totalPriceUrl, ids);
+     }
+
     public bookCountLength(id: number) {
         const checkLocalStg: string = localStorage.getItem('book');
         const bookList: Array<BookModel> = JSON.parse(checkLocalStg) || [];
 
-        const countBooksChoice = bookList.filter(book => book.id  === id).length;
+        const countBooksChoice = bookList.filter(book => book.id  === id);
 
-        if (countBooksChoice !== 0) {
-            this.selectedBook = true;
-            return countBooksChoice;
-        } else {
-            this.selectedBook = false;
+        this.selectedBook = countBooksChoice.length !== 0;
+
+        if (this.selectedBook) {
+            return countBooksChoice.length;
         }
     }
 
-    public checkSelectBooks(id: number) {
+    public checkSelectBooks() {
         const checkLocalStg: string = localStorage.getItem('book');
         const bookList: Array<BookModel> = JSON.parse(checkLocalStg) || [];
 
-        if (bookList.filter(book => book.id === id)) {
-            this.selectedBook = true;
-        } else {
-            this.selectedBook = false;
-        }
+        this.selectedBook = bookList.length !== 0;
+
     }
 
     public editbook() {
-        if (this.editBook === false) {
-            this.editBook = true;
-        } else {
-            this.editBook = false;
-        }
+        this.editBook = this.editBook === undefined || !this.editBook;
     }
 
     public loadStripe() {

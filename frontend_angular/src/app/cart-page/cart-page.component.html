@@ -7,10 +7,10 @@
         <button class="btn__clear btn" (click)="clearCartBtn()">Очистить корзину &#10006;</button>
     </div>
     <div class="col">
-      <button class="btn" (click)="this.bookService.pay(totalPrice)">Купить</button>
+      <button class="btn" (click)="this.bookService.pay(total)">Купить</button>
     </div>
     <div class="col price">
-     Общая сумма: <b>{{ countTotalPrice() }}$</b> 
+     Общая сумма: <b>{{ total }}$</b> 
     </div>
   </div>
   <div class="row">

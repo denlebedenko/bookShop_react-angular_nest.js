@@ -114,7 +114,7 @@ export class BookService {
             result.set(item, 1);
         });
 
-        const books: BookDocument[] = await this.bookRepository.booksInCart(bookIdList);
+        const books: BookModel[] = await this.bookRepository.booksInCart(bookIdList);
 
         const totalPrice: number = books.reduce((amount, book, index, array) => {
             if (result.has(book.id)) {
@@ -125,9 +125,24 @@ export class BookService {
             return amount;
         }, 0);
 
+        const booksInCart: BookModel[] = books.map((book: BookDocument) => {
+
+            const findedBooks: BookModel = {
+                id: book.id,
+                title: book.title,
+                price: book.price,
+                authors: book.authors,
+                genre: book.genre,
+                description: book.description,
+                coverUrl: book.coverUrl,
+                type: book.type,
+            };
+            return findedBooks;
+        });
+
         return {
             totalPrice,
-            books,
+            booksInCart,
         };
     }
 }

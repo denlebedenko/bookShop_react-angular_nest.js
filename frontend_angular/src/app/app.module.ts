@@ -10,9 +10,9 @@ import { UserModule } from 'src/app/user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from 'src/app/app.component';
 
 import { AuthorsModule } from './authors/authors.module';
+import { AppComponent } from './app.component';
 
 
 @NgModule({

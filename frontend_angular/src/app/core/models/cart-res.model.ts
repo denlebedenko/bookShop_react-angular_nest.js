@@ -1,4 +1,4 @@
-import { BookModel } from "./book.model";
+import { BookModel } from 'src/app/core/models/book.model';
 
 export interface CartResponse {
     totalPrice: number;

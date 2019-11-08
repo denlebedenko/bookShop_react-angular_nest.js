@@ -13,6 +13,7 @@ export const environment = {
     stripeUrl: `http://localhost:80/customers`,
     stripePublicKey: `pk_test_COpeWdtqWHKjrXwVJa8FzERh00HWGQVHP3`,
     authorUrl: 'http://localhost:80/authors',
+    totalPriceUrl: 'http://localhost:80/books/cart',
   }
 };
 
