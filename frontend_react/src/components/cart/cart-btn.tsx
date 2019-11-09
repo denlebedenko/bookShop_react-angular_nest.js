@@ -21,15 +21,17 @@ const StyledBadge1 = withStyles((theme: Theme) =>
   }),
 )(Badge);
 
+interface Props {
+  token: string;
+  bookIds: string[]
+}
 
 
-const CartBtn: React.FC = (props: any) => {
+const CartBtn: React.FC<Props> = ({ token, bookIds }) => {
 
-  const { token, bookIds } = props;
+  const amount: number = bookIds.length;
 
-  const amount = bookIds.length
-
-  let logged = tokenStorage.loggedIn(token);
+  let logged: boolean = tokenStorage.loggedIn(token);
 
   const cart = <Box m={1}>
     <IconButton aria-label="cart">

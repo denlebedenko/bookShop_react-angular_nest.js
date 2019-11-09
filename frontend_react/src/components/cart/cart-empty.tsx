@@ -3,7 +3,7 @@ import ShoppingBasketRoundedIcon from '@material-ui/icons/ShoppingBasketRounded'
 import './cart.scss'
 import { Link } from 'react-router-dom';
 
-const CartEmpty = () => {
+const CartEmpty: React.FC = () => {
     return (
         <React.Fragment>
             <div className="empty_wrapp">

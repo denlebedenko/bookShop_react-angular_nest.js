@@ -62,7 +62,12 @@ const filterData: QueryBook = {
   typeBook: '',
 }
 
-const Filter: React.FC = ({ changeFilter, resetFilter }: any) => {
+interface Props {
+  changeFilter: Function;
+  resetFilter: Function;
+}
+
+const Filter: React.FC<Props> = ({ changeFilter, resetFilter }) => {
   const classes = useStyles();
   const [filter, setFilter] = useState(filterData);
 

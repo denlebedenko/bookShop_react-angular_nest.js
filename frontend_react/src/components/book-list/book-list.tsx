@@ -7,9 +7,16 @@ import { BookModel } from 'models/book.model';
 import Filter from '../filter/filter';
 import { addToCart } from '../../store/cart/action';
 import { bindActionCreators } from 'redux';
+import { QueryBook } from 'models/query-books.model';
 
 const bookService = new BookService();
-const BookList: React.FC = ({query, addedBook}:any) => {
+
+interface Props {
+    query: QueryBook;
+    addedBook: Function;
+}
+
+const BookList: React.FC<Props> = ({query, addedBook}) => {
 
    const [books, setBookList] = useState<BookModel[]>([]);
 

@@ -10,5 +10,6 @@ export default class BookService {
         const response: AxiosResponse<BookModel[]> = await axios.post<QueryBook, AxiosResponse<BookModel[]>>(`${config.REACT_APP_GET_BOOKS_URL}`, payload);
         return response.data;
     }
+
 }
 

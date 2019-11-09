@@ -10,7 +10,13 @@ import { bindActionCreators } from 'redux';
 
 const cartService = new CartService();
 
-const Cart: React.FC = ({ cart, addToCart, removedFromCart }: any) => {
+interface Props {
+    cart: string[];
+    addToCart: Function;
+    removedFromCart: Function;
+}
+
+const Cart: React.FC<Props> = ({ cart, addToCart, removedFromCart }) => {
 
     const [booksI, setBooks] = useState<BookModel[]>([])
     const [total, setTotalPrice] = useState(0)

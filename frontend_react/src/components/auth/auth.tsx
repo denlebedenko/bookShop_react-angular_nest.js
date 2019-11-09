@@ -9,9 +9,13 @@ import { connect } from 'react-redux'
 
 const tokenStorage = new TokenStorage();
 
-const Auth = (props:any) => {
+interface Props {
+  token: string;
+}
 
-  let logged = tokenStorage.loggedIn(props.token);
+const Auth: React.FC<Props> = ({token}) => {
+
+  let logged = tokenStorage.loggedIn(token);
 
   let authBtns: JSX.Element = <div className="auth">
                               <Grid container direction="row">

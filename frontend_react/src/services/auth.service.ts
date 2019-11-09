@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { UserLoginModel, UserRegisterModel } from '../models';
+import { RegistrationModel } from '../models/registration.model'
 import { UserDataModel } from '../models/user-data.model';
 import { Environment } from '../environment/environment';
 
@@ -11,8 +12,8 @@ export default class AuthService {
         return response.data;
     }
 
-    registerUser = async (payload: UserRegisterModel) => {
-        const response: AxiosResponse<UserDataModel> = await axios.post<UserRegisterModel, AxiosResponse<UserDataModel>>(`${config.REACT_APP_REGISTRATION_USER}`, payload);
+    registerUser = async (payload: RegistrationModel) => {
+        const response: AxiosResponse<UserDataModel> = await axios.post<RegistrationModel, AxiosResponse<UserDataModel>>(`${config.REACT_APP_REGISTRATION_USER}`, payload);
         return response.data;
     }
 }

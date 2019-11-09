@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Logout = ({logout}: any) => {
+interface Props {
+  logout: Function
+}
+
+const Logout: React.FC<Props> = ({logout}) => {
 
     const classes = useStyles();
 

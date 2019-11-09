@@ -41,7 +41,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const SignIn = ({logining}: any) => {
+interface Props {
+  logining: Function;
+}
+
+const SignIn: React.FC<Props> = ({logining}) => {
 
     
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

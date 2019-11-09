@@ -34,15 +34,15 @@ const useStyles = makeStyles({
 
 
 interface OwnProps {
-  addToCart: any;
+  addToCart: Function;
 }
 
-
 type Props = BookModel & OwnProps;
+
 const BookItem: React.FC<Props> = (props) =>{
   const classes = useStyles();
 
- const { title, price, authors, genre, description, coverUrl, type, addToCart  } = props;
+ const { title, price, genre, description, coverUrl, type, addToCart  } = props;
 
 
   return (
@@ -75,7 +75,7 @@ const BookItem: React.FC<Props> = (props) =>{
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary" onClick={addToCart}>
+                    <Button size="small" color="primary" onClick={() => addToCart()}>
                       Buy
                     </Button>
                 </CardActions>

@@ -8,7 +8,11 @@ import Cart from './cart';
 import { connect } from 'react-redux';
 import CartEmpty from './cart-empty';
 
-const CartWrapper: React.FC = ({ cart }: any) => {
+interface Props {
+    cart: string[];
+}
+
+const CartWrapper: React.FC<Props> = ({ cart }) => {
 
     return (
         <div>

@@ -1,9 +1,5 @@
-export class ErrorRegisterDataModel {
-
-    constructor(){
-        email: '';
-        password: '';
-        username: '';
-    }
-    
+export interface ErrorRegisterDataModel {
+    email: string;
+    password: string;
+    username: string;
 }
