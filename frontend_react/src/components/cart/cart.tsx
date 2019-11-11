@@ -6,14 +6,15 @@ import { Grid, Container } from '@material-ui/core';
 import './cart.scss';
 import { connect } from 'react-redux';
 import * as actions from '../../store/cart/action';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, AnyAction, Dispatch } from 'redux';
+import { AppState } from 'models/state/app-state.model';
 
 const cartService = new CartService();
 
 interface Props {
     cart: string[];
-    addToCart: Function;
-    removedFromCart: Function;
+    addToCart: typeof actions.addToCart;
+    removedFromCart: typeof actions.removedFromCart;
 }
 
 const Cart: React.FC<Props> = ({ cart, addToCart, removedFromCart }) => {
@@ -72,13 +73,13 @@ const Cart: React.FC<Props> = ({ cart, addToCart, removedFromCart }) => {
     );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppState) => {
     return {
         cart: state.cart.books,
     };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     const { addToCart, removedFromCart } = bindActionCreators(actions, dispatch)
     return {
         addToCart,

@@ -1,4 +1,4 @@
-import { QueryBook } from "../../models/query-books.model";
+import { QueryBook } from "../../models/filter/query-books.model";
 
 const changeFilter = (customFilter: QueryBook) => ({
     type: 'GET_FILTER',

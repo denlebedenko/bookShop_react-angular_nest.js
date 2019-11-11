@@ -5,6 +5,7 @@ import { Box, withStyles, Theme, createStyles, Badge } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import './cart.scss';
+import { AppState } from 'models/state/app-state.model';
 
 const tokenStorage = new TokenStorage();
 
@@ -47,7 +48,7 @@ const CartBtn: React.FC<Props> = ({ token, bookIds }) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppState) => {
   return {
     token: state.auth.token,
     bookIds: state.cart.books,

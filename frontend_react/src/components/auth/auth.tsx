@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core';
 import Logout from './logout';
 import TokenStorage from '../../services/token.storage';
 import { connect } from 'react-redux'
+import { AppState } from 'models/state/app-state.model';
 
 const tokenStorage = new TokenStorage();
 
@@ -31,7 +32,7 @@ const Auth: React.FC<Props> = ({token}) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppState) => {
   return {
     token: state.auth.token,
   };

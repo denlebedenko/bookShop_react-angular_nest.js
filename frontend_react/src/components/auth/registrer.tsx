@@ -1,12 +1,12 @@
 import { Button, createStyles, FormControl, Grid, makeStyles, Menu, TextField, Theme } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import AuthService from '../../services/auth.service';
 import TokenStorage from '../../services/token.storage';
 import { authUser } from '../../store/auth/action';
 
-import { RegistrationModel } from '../../models/registration.model';
+import { RegistrationModel } from '../../models/user/registration.model';
 
 const authService = new AuthService();
 const tokenStorage = new TokenStorage();
@@ -40,7 +40,7 @@ const registerData: RegistrationModel = {
 }
 
 interface Props {
-  logining: Function;
+  logining: typeof authUser;
 }
 
 const Registrer: React.FC<Props> = ({ logining }) => {
@@ -142,7 +142,7 @@ const Registrer: React.FC<Props> = ({ logining }) => {
   )
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   const logining = bindActionCreators(authUser, dispatch)
   return {
     logining

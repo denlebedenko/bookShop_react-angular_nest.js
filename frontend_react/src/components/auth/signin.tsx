@@ -10,8 +10,8 @@ import { Button,
         } from '@material-ui/core';
 import { UserLoginModel } from '../../models';
 import AuthService from '../../services/auth.service';
-import { UserDataModel } from '../../models/user-data.model';
-import { bindActionCreators } from 'redux';
+import { UserDataModel } from '../../models/user/user-data.model';
+import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import { authUser } from '../../store/auth/action';
 import { connect } from 'react-redux';
 import  TokenStorage  from '../../services/token.storage';
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  logining: Function;
+  logining: typeof authUser;
 }
 
 const SignIn: React.FC<Props> = ({logining}) => {
@@ -111,7 +111,7 @@ const SignIn: React.FC<Props> = ({logining}) => {
     )
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   const logining = bindActionCreators(authUser, dispatch)
    return {
     logining

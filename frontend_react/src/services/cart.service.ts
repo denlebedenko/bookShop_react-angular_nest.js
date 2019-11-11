@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { CartResponse } from '../models/cart-res.model';
+import { CartResponse } from '../models/cart/cart-res.model';
 import { Environment } from '../environment/environment';
 
 

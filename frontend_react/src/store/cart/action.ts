@@ -3,7 +3,7 @@ import TokenStorage from "../../services/token.storage";
 const tokenStorage = new TokenStorage();
 const bookIds = JSON.parse(tokenStorage.getBooks()) || [];
 
-const addToCart = (id: string) => {
+const addToCart = (id: string | undefined) => {
 
     bookIds.push(id);
     tokenStorage.setBooks(JSON.stringify(bookIds));

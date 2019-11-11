@@ -17,8 +17,8 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actions from '../../store/books/action';
-import { QueryBook } from '../../models/query-books.model';
-import { bindActionCreators } from 'redux';
+import { QueryBook } from '../../models/filter/query-books.model';
+import { bindActionCreators, AnyAction, Dispatch } from 'redux';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -63,8 +63,8 @@ const filterData: QueryBook = {
 }
 
 interface Props {
-  changeFilter: Function;
-  resetFilter: Function;
+  changeFilter: typeof actions.changeFilter;
+  resetFilter: typeof actions.resetFilter;
 }
 
 const Filter: React.FC<Props> = ({ changeFilter, resetFilter }) => {
@@ -157,7 +157,7 @@ const Filter: React.FC<Props> = ({ changeFilter, resetFilter }) => {
   );
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   const { changeFilter, resetFilter } = bindActionCreators(actions, dispatch);
   return {
     changeFilter,

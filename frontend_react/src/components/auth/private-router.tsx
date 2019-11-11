@@ -3,6 +3,7 @@ import { Route, RouteProps } from 'react-router-dom';
 import TokenStorage from '../../services/token.storage';
 import { connect } from 'react-redux';
 import ModalAuth from './modal-auth';
+import { AppState } from 'models/state/app-state.model';
 
 const tokenStorage = new TokenStorage();
 
@@ -21,7 +22,7 @@ const PrivateRoute: React.FC<Prop> = ({Component, token , ...rest }) => {
 };
 
         
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppState) => {
         return {
             token: state.auth.token,
         };

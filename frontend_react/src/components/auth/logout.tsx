@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles';
 import { Theme, createStyles, Button } from '@material-ui/core';
 import  TokenStorage  from '../../services/token.storage';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import { logOut } from '../../store/auth/action';
 import { connect } from 'react-redux';
 
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  logout: Function
+  logout: typeof logOut,
 }
 
 const Logout: React.FC<Props> = ({logout}) => {
@@ -39,7 +39,7 @@ const Logout: React.FC<Props> = ({logout}) => {
     )
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     const logout = bindActionCreators(logOut, dispatch)
      return {
         logout

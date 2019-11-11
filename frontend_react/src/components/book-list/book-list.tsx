@@ -1,19 +1,20 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import BookService from '../../services/book.service';
 import { Container, Grid } from '@material-ui/core';
 import BookItem from './book-item/book-item';
 import { connect } from 'react-redux';
-import { BookModel } from 'models/book.model';
+import { BookModel } from 'models/book/book.model';
 import Filter from '../filter/filter';
 import { addToCart } from '../../store/cart/action';
-import { bindActionCreators } from 'redux';
-import { QueryBook } from 'models/query-books.model';
+import { bindActionCreators, Dispatch, AnyAction } from 'redux';
+import { QueryBook } from 'models/filter/query-books.model';
+import { AppState } from 'models/state/app-state.model';
 
 const bookService = new BookService();
 
 interface Props {
     query: QueryBook;
-    addedBook: Function;
+    addedBook: typeof addToCart;
 }
 
 const BookList: React.FC<Props> = ({query, addedBook}) => {
@@ -35,8 +36,7 @@ const BookList: React.FC<Props> = ({query, addedBook}) => {
                     key={book.id}
                     id={book.id}
                     title={book.title} 
-                    price={book.price} 
-                    authors={book.authors} 
+                    price={book.price}
                     genre={book.genre}  
                     description={book.description}
                     coverUrl={book.coverUrl} 
@@ -64,13 +64,14 @@ const BookList: React.FC<Props> = ({query, addedBook}) => {
     );
 };  
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: AppState) => {
     return {
        query: state.query,
     };
 };
 
-const mapDispatchToProps = (dispatch:any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+
     const addedBook = bindActionCreators(addToCart, dispatch)
     return { 
         addedBook

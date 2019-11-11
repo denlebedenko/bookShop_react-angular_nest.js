@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { UserLoginModel, UserRegisterModel } from '../models';
-import { RegistrationModel } from '../models/registration.model'
-import { UserDataModel } from '../models/user-data.model';
+import { RegistrationModel } from '../models/user/registration.model'
+import { UserDataModel } from '../models/user/user-data.model';
 import { Environment } from '../environment/environment';
 
 

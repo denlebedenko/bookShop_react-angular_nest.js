@@ -1,6 +1,5 @@
-export * from './book.model';
-export * from './user-login.model';
-export * from './user-register.model';
-export * from './user.model';
-export * from './author.model';
+export * from './book/book.model';
+export * from './user/user-login.model';
+export * from './user/user-register.model';
+export * from './user/user.model';
 

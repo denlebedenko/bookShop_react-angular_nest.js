@@ -1,4 +1,5 @@
-import { QueryBook } from "../../models/query-books.model";
+import { QueryBook } from "../../models/filter/query-books.model";
+import { AppAction } from "models/state/app-action.model";
 
 const initialQuery: QueryBook = {
     page: '1',
@@ -7,7 +8,7 @@ const initialQuery: QueryBook = {
     typeBook: '',
 }
 
-const queryReducer = (state: QueryBook = initialQuery, action: any) => {
+const queryReducer = (state: QueryBook = initialQuery, action: AppAction) => {
     switch (action.type) {
         case 'GET_FILTER':
             const newList = {

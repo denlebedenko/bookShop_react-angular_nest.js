@@ -1,4 +1,5 @@
 import TokenStorage from "../../services/token.storage";
+import { AppAction } from "models/state/app-action.model";
 
 const tokenStorage = new TokenStorage()
 
@@ -13,7 +14,7 @@ const initialStore: CartState = {
     books: bookIds,
 }
 
-const cartReducer = (state: CartState = initialStore, action: any) => {
+const cartReducer = (state: CartState = initialStore, action: AppAction) => {
     const bookId = action.payload;
     switch (action.type) {
         case 'ADD_TO_CART':

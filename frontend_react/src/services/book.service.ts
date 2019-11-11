@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { BookModel } from '../models';
-import { QueryBook } from '../models/query-books.model';
+import { QueryBook } from '../models/filter/query-books.model';
 import { Environment } from '../environment/environment';
 
 const config = new Environment()

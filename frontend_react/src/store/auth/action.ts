@@ -1,4 +1,4 @@
-import { UserDataModel } from "../../models/user-data.model";
+import { UserDataModel } from "../../models/user/user-data.model";
 
 const authUser = (loginData: UserDataModel) => ({
     type: 'USER_AUTH',

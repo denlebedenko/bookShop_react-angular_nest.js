@@ -1,5 +1,6 @@
-import { UserDataModel } from "../../models/user-data.model";
+import { UserDataModel } from "../../models/user/user-data.model";
 import TokenStorage from "../../services/token.storage";
+import { AppAction } from "models/state/app-action.model";
 
 const tokenStorage = new TokenStorage();
 
@@ -13,7 +14,7 @@ const initialUserData: UserDataModel = {
 }
 
 
-const authReducer = (state: UserDataModel = initialUserData, action: any) => {
+const authReducer = (state: UserDataModel = initialUserData, action: AppAction) => {
     switch (action.type) {
         case 'USER_AUTH':
             const loggedInUser = {
