@@ -21,9 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundImage: 'linear-gradient(to right, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #9ba0e6, #9ba6eb, #9cacf0, #adaef6, #beb0fa, #cfb2fd, #e1b3ff);'
     },
     type: {
-      marginBottom: 20
+      marginBottom: 20,
     },
-
   }),
 );
 
@@ -38,7 +37,7 @@ const Header: React.FC = () => {
             <Link to="/" className="text" >
               <p>
                 BookShop (React Edition)
-                  </p>
+              </p>
             </Link>
           </Typography>
           <Link to="/cart">

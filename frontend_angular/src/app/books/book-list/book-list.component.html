@@ -6,9 +6,11 @@
       <input type="text" id="search" placeholder="Change name or author..." [(ngModel)] = "searchStr">
     </div>
     <div class="col col-lg-3 cart">
-      <button *ngIf ="authService.loggedIn()" routerLink="/home/cart" class="cart__btn btn">В корзину</button>
-      <button *ngIf ="authService.loggedIn()" (click)="authService.logout()" class="btn logout_btn">Выход</button>
-      <button *ngIf ="!authService.loggedIn()" class="btn logIn_btn " routerLink="/login">Вход</button>
+      <ng-template #logining>
+        <button routerLink="/home/cart" class="cart__btn btn">В корзину</button>
+        <button  (click)="authService.logout()" class="btn logout_btn">Выход</button>
+      </ng-template>
+      <button *ngIf ="!authService.loggedIn(); else logining" class="btn logIn_btn " routerLink="/login">Вход</button>
     </div>
   </div>
   <div class="row justify-content-center adminPanel" *ngIf ="authService.checkUserRole()" >
