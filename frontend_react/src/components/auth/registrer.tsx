@@ -143,7 +143,7 @@ const Registrer: React.FC<Props> = ({ logining }) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
-  const logining = bindActionCreators(authUser, dispatch)
+  const logining = bindActionCreators(authUser, dispatch);
   return {
     logining
   }
