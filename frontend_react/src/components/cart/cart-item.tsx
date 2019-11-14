@@ -3,13 +3,14 @@ import { Grid, IconButton } from '@material-ui/core';
 import TokenStorage from '../../services/token.storage';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import { addToCart } from 'store/cart/action';
 const tokenStorage = new TokenStorage();
 
 interface Props {
     title: string;
     price: number;
     id: string | undefined;
-    addedBook: Function;
+    addedBook: typeof addToCart;
     removedBookFromCart: Function;
     getTotalPrice: Function;
 }
