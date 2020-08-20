@@ -29,7 +29,7 @@
     "@sendgrid/mail": "^6.4.0",
     "@types/mongoose": "^5.5.15",
     "@types/stripe": "^6.32.7",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "dotenv": "^8.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.11",
